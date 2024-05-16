@@ -73,66 +73,98 @@
     .show {
       display: block;
     }
+
+    .info {
+      text-align: left;
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
   <div class="container">
     <h1>Welcome to One Day in Puerto Rico</h1>
     <input type="text" id="nameInput" placeholder="Enter your name">
-    <button onclick="start()">Start</button>
+    <button onclick="start()" id="startButton">Start</button>
     <p id="greeting"></p>
   </div>
 
   <div class="container categories">
     <div class="category animation">
       <h2>Attractions</h2>
-      <button onclick="showAttractions(1)">Attraction 1</button>
-      <button onclick="showAttractions(2)">Attraction 2</button>
-      <button onclick="showAttractions(3)">Attraction 3</button>
+      <button onclick="showAttractions()">Attraction 1</button>
+      <button onclick="showAttractions()">Attraction 2</button>
+      <button onclick="showAttractions()">Attraction 3</button>
     </div>
 
     <div class="category animation">
       <h2>Restaurants</h2>
-      <button onclick="showRestaurants(1)">Restaurant 1</button>
-      <button onclick="showRestaurants(2)">Restaurant 2</button>
-      <button onclick="showRestaurants(3)">Restaurant 3</button>
+      <button onclick="showRestaurants()">Restaurant 1</button>
+      <button onclick="showRestaurants()">Restaurant 2</button>
+      <button onclick="showRestaurants()">Restaurant 3</button>
     </div>
   </div>
 
   <div class="container attractions">
     <div class="attraction animation" id="attraction1">
       <h2>Attraction 1</h2>
-      <h3>Castillo San Felipe del Morro</h3>
-      <img src="morro.jpg" alt="Castillo San Felipe del Morro">
-      <p>The most iconic fortification built by the Spanish in the Americas, covering a 140-foot-high promontory at the entrance to the Bay of San Juan.</p>
-      <p>Cost: $10.00</p>
+      <div class="info">
+        <p><strong>Name:</strong> *Coming soon*</p>
+        <p><strong>Details:</strong> *Coming soon*</p>
+        <p><strong>Cost:</strong> *Replace with your info*</p>
+        <p><strong>Pictures of the place:</strong> *Coming soon*</p>
+      </div>
     </div>
 
     <div class="attraction animation" id="attraction2">
       <h2>Attraction 2</h2>
-      <!-- Add details for Attraction 2 here -->
+      <div class="info">
+        <p><strong>Name:</strong> *Coming soon*</p>
+        <p><strong>Details:</strong> *Coming soon*</p>
+        <p><strong>Cost:</strong> *Replace with your info*</p>
+        <p><strong>Pictures of the place:</strong> *Coming soon*</p>
+      </div>
     </div>
 
     <div class="attraction animation" id="attraction3">
       <h2>Attraction 3</h2>
-      <!-- Add details for Attraction 3 here -->
+      <div class="info">
+        <p><strong>Name:</strong> *Coming soon*</p>
+        <p><strong>Details:</strong> *Coming soon*</p>
+        <p><strong>Cost:</strong> *Replace with your info*</p>
+        <p><strong>Pictures of the place:</strong> *Coming soon*</p>
+      </div>
     </div>
   </div>
 
   <div class="container restaurants">
     <div class="restaurant animation" id="restaurant1">
       <h2>Restaurant 1</h2>
-      <!-- Add details for Restaurant 1 here -->
+      <div class="info">
+        <p><strong>Name:</strong> *Coming soon*</p>
+        <p><strong>Details:</strong> *Coming soon*</p>
+        <p><strong>Cost:</strong> *Replace with your info*</p>
+        <p><strong>Pictures of the place:</strong> *Coming soon*</p>
+      </div>
     </div>
 
     <div class="restaurant animation" id="restaurant2">
       <h2>Restaurant 2</h2>
-      <!-- Add details for Restaurant 2 here -->
+      <div class="info">
+        <p><strong>Name:</strong> *Coming soon*</p>
+        <p><strong>Details:</strong> *Coming soon*</p>
+        <p><strong>Cost:</strong> *Replace with your info*</p>
+        <p><strong>Pictures of the place:</strong> *Coming soon*</p>
+      </div>
     </div>
 
     <div class="restaurant animation" id="restaurant3">
       <h2>Restaurant 3</h2>
-      <!-- Add details for Restaurant 3 here -->
+      <div class="info">
+        <p><strong>Name:</strong> *Coming soon*</p>
+        <p><strong>Details:</strong> *Coming soon*</p>
+        <p><strong>Cost:</strong> *Replace with your info*</p>
+        <p><strong>Pictures of the place:</strong> *Coming soon*</p>
+      </div>
     </div>
   </div>
 
@@ -145,24 +177,21 @@
       if (name !== '') {
         greeting.textContent = 'Welcome, ' + name + '! I hope you enjoy ツ';
         document.getElementById('nameInput').style.display = 'none';
+        document.getElementById('startButton').style.display = 'none';
         document.querySelector('.categories').classList.add('animation');
       } else {
         alert('Please enter your name.');
       }
     }
 
-    function showAttractions(attractionNumber) {
+    function showAttractions() {
       document.querySelector('.categories').style.display = 'none';
       document.querySelector('.attractions').style.display = 'block';
-      document.querySelector('.attraction').style.display = 'none';
-      document.getElementById('attraction' + attractionNumber).classList.add('show');
     }
 
-    function showRestaurants(restaurantNumber) {
+    function showRestaurants() {
       document.querySelector('.categories').style.display = 'none';
       document.querySelector('.restaurants').style.display = 'block';
-      document.querySelector('.restaurant').style.display = 'none';
-      document.getElementById('restaurant' + restaurantNumber).classList.add('show');
     }
   </script>
 </body>
