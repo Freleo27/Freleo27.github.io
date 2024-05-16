@@ -88,13 +88,16 @@
     <p id="greeting"></p>
   </div>
 
-  <div class="container attractions">
+  <div class="container categories">
     <div class="category animation">
       <h2>Attractions</h2>
       <button onclick="showAttraction(1)">Attraction 1</button>
       <button onclick="showAttraction(2)">Attraction 2</button>
       <button onclick="showAttraction(3)">Attraction 3</button>
     </div>
+  </div>
+
+  <div class="container attractions">
     <div class="attraction animation" id="attraction1">
       <h2>Attraction 1</h2>
       <div class="info">
@@ -137,6 +140,7 @@
         document.querySelector('.container.categories').classList.add('animation');
         setTimeout(() => {
           document.querySelector('.container').style.display = 'none';
+          document.querySelector('.categories').style.display = 'block';
         }, 2000); // Hides everything except categories after 2 seconds
       } else {
         alert('Please enter your name.');
