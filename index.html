@@ -81,52 +81,53 @@
   </style>
 </head>
 <body>
-  <div class="container">
+  <header>
     <h1>Welcome to One Day in Puerto Rico</h1>
-    <input type="text" id="nameInput" placeholder="Enter your name">
-    <button onclick="start()">Start</button>
-    <p id="greeting"></p>
-  </div>
-
-  <div class="container categories">
-    <div class="category animation">
-      <h2>Attractions</h2>
-      <button onclick="showAttraction(1)">Attraction 1</button>
-      <button onclick="showAttraction(2)">Attraction 2</button>
-      <button onclick="showAttraction(3)">Attraction 3</button>
-    </div>
-  </div>
-
-  <div class="container attractions">
-    <div class="attraction animation" id="attraction1">
-      <h2>Attraction 1</h2>
-      <div class="info">
-        <p><strong>Name:</strong> *Coming soon*</p>
-        <p><strong>Details:</strong> *Coming soon*</p>
-        <p><strong>Cost:</strong> *Replace with your info*</p>
-        <p><strong>Pictures of the place:</strong> **Type url for picture**</p>
+  </header>
+  <main>
+    <section class="container">
+      <input type="text" id="nameInput" placeholder="Enter your name">
+      <button onclick="start()">Start</button>
+      <p id="greeting"></p>
+    </section>
+    <section class="categories">
+      <div class="category animation">
+        <h2>Attractions</h2>
+        <button onclick="showAttraction(1)">Attraction 1</button>
+        <button onclick="showAttraction(2)">Attraction 2</button>
+        <button onclick="showAttraction(3)">Attraction 3</button>
       </div>
-    </div>
-    <div class="attraction animation" id="attraction2">
-      <h2>Attraction 2</h2>
-      <div class="info">
-        <p><strong>Name:</strong> *Coming soon*</p>
-        <p><strong>Details:</strong> *Coming soon*</p>
-        <p><strong>Cost:</strong> *Replace with your info*</p>
-        <p><strong>Pictures of the place:</strong> **Type url for picture**</p>
+    </section>
+    <section class="attractions">
+      <div class="attraction animation" id="attraction1">
+        <h2>Attraction 1</h2>
+        <div class="info">
+          <p><strong>Name:</strong> *Coming soon*</p>
+          <p><strong>Details:</strong> *Coming soon*</p>
+          <p><strong>Cost:</strong> *Replace with your info*</p>
+          <p><strong>Pictures of the place:</strong> **Type url for picture**</p>
+        </div>
       </div>
-    </div>
-    <div class="attraction animation" id="attraction3">
-      <h2>Attraction 3</h2>
-      <div class="info">
-        <p><strong>Name:</strong> *Coming soon*</p>
-        <p><strong>Details:</strong> *Coming soon*</p>
-        <p><strong>Cost:</strong> *Replace with your info*</p>
-        <p><strong>Pictures of the place:</strong> **Type url for picture**</p>
+      <div class="attraction animation" id="attraction2">
+        <h2>Attraction 2</h2>
+        <div class="info">
+          <p><strong>Name:</strong> *Coming soon*</p>
+          <p><strong>Details:</strong> *Coming soon*</p>
+          <p><strong>Cost:</strong> *Replace with your info*</p>
+          <p><strong>Pictures of the place:</strong> **Type url for picture**</p>
+        </div>
       </div>
-    </div>
-  </div>
-
+      <div class="attraction animation" id="attraction3">
+        <h2>Attraction 3</h2>
+        <div class="info">
+          <p><strong>Name:</strong> *Coming soon*</p>
+          <p><strong>Details:</strong> *Coming soon*</p>
+          <p><strong>Cost:</strong> *Replace with your info*</p>
+          <p><strong>Pictures of the place:</strong> **Type url for picture**</p>
+        </div>
+      </div>
+    </section>
+  </main>
   <script>
     function start() {
       const nameInput = document.getElementById('nameInput');
