@@ -37,6 +37,7 @@
 
     .categories {
       margin-top: 50px;
+      display: none;
     }
 
     .category {
@@ -51,31 +52,18 @@
       display: none;
     }
 
-    .animation {
-      animation: slideInUp 1s ease-out;
+    .dropdown {
+      margin-top: 20px;
     }
 
-    @keyframes slideInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(100px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
+    select, input[type="text"] {
+      margin-bottom: 10px;
+      padding: 5px;
+      width: 100%;
     }
 
-    .attraction, .restaurant {
-      display: none;
-    }
-
-    .show {
-      display: block;
-    }
-
-    .info {
-      text-align: left;
+    .loading {
+      font-size: 24px;
       margin-top: 20px;
     }
   </style>
@@ -89,71 +77,74 @@
       <input type="text" id="nameInput" placeholder="Enter your name">
       <button onclick="start()">Start</button>
       <p id="greeting"></p>
+      <p id="loading" class="loading" style="display: none;"></p>
     </section>
     <section class="categories">
       <div class="category animation">
         <h2>Attractions</h2>
-        <button onclick="showAttraction(1)">Attraction 1</button>
-        <button onclick="showAttraction(2)">Attraction 2</button>
-        <button onclick="showAttraction(3)">Attraction 3</button>
+        <div class="dropdown" id="attractionsDropdown"></div>
       </div>
-    </section>
-    <section class="attractions">
-      <div class="attraction animation" id="attraction1">
-        <h2>Attraction 1</h2>
-        <div class="info">
-          <p><strong>Name:</strong> *Coming soon*</p>
-          <p><strong>Details:</strong> *Coming soon*</p>
-          <p><strong>Cost:</strong> *Replace with your info*</p>
-          <p><strong>Pictures of the place:</strong> **Type url for picture**</p>
-        </div>
-      </div>
-      <div class="attraction animation" id="attraction2">
-        <h2>Attraction 2</h2>
-        <div class="info">
-          <p><strong>Name:</strong> *Coming soon*</p>
-          <p><strong>Details:</strong> *Coming soon*</p>
-          <p><strong>Cost:</strong> *Replace with your info*</p>
-          <p><strong>Pictures of the place:</strong> **Type url for picture**</p>
-        </div>
-      </div>
-      <div class="attraction animation" id="attraction3">
-        <h2>Attraction 3</h2>
-        <div class="info">
-          <p><strong>Name:</strong> *Coming soon*</p>
-          <p><strong>Details:</strong> *Coming soon*</p>
-          <p><strong>Cost:</strong> *Replace with your info*</p>
-          <p><strong>Pictures of the place:</strong> **Type url for picture**</p>
-        </div>
+      <div class="category animation">
+        <h2>Restaurants</h2>
+        <div class="dropdown" id="restaurantsDropdown"></div>
       </div>
     </section>
   </main>
+
   <script>
     function start() {
       const nameInput = document.getElementById('nameInput');
       const greeting = document.getElementById('greeting');
+      const loading = document.getElementById('loading');
       const name = nameInput.value.trim();
 
       if (name !== '') {
-        greeting.textContent = 'Welcome, ' + name + '! I hope you enjoy ツ';
-        document.getElementById('nameInput').style.display = 'none';
-        document.getElementById('startButton').style.display = 'none';
-        document.querySelector('.container.categories').classList.add('animation');
+        greeting.textContent = 'Welcome, ' + name + '! Loading...';
+        loading.style.display = 'block';
         setTimeout(() => {
+          loading.textContent = 'Loading... 5';
+        }, 1000);
+        setTimeout(() => {
+          loading.textContent = 'Loading... 4';
+        }, 2000);
+        setTimeout(() => {
+          loading.textContent = 'Loading... 3';
+        }, 3000);
+        setTimeout(() => {
+          loading.textContent = 'Loading... 2';
+        }, 4000);
+        setTimeout(() => {
+          loading.textContent = 'Loading... 1';
+        }, 5000);
+        setTimeout(() => {
+          loading.style.display = 'none';
           document.querySelector('.container').style.display = 'none';
           document.querySelector('.categories').style.display = 'block';
-        }, 2000); // Hides everything except categories after 2 seconds
+        }, 6000);
       } else {
         alert('Please enter your name.');
       }
     }
 
-    function showAttraction(attractionNumber) {
-      document.querySelectorAll('.attraction').forEach(function(el) {
-        el.style.display = 'none';
-      });
-      document.getElementById('attraction' + attractionNumber).style.display = 'block';
+    function createDropdowns() {
+      const attractionsDropdown = document.getElementById('attractionsDropdown');
+      const restaurantsDropdown = document.getElementById('restaurantsDropdown');
+
+      const defaultOption = document.createElement('option');
+      defaultOption.text = 'N/A';
+
+      for (let i = 1; i <= 3; i++) {
+        const optionAttractions = defaultOption.cloneNode(true);
+        optionAttractions.text = 'Attraction ' + i;
+        attractionsDropdown.appendChild(optionAttractions);
+
+        const optionRestaurants = defaultOption.cloneNode(true);
+        optionRestaurants.text = 'Restaurant ' + i;
+        restaurantsDropdown.appendChild(optionRestaurants);
+      }
     }
+
+    window.onload = createDropdowns;
   </script>
 </body>
 </html>
