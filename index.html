@@ -34,6 +34,44 @@
     button:hover {
       background-color: #0056b3;
     }
+
+    .attractions, .restaurants {
+      margin-top: 50px;
+    }
+
+    h2 {
+      margin-bottom: 20px;
+    }
+
+    .attraction, .restaurant {
+      margin-bottom: 30px;
+    }
+
+    .attraction img, .restaurant img {
+      max-width: 100%;
+      height: auto;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    .attraction p, .restaurant p {
+      margin-top: 10px;
+    }
+
+    .animation {
+      animation: slideInUp 1s ease-out;
+    }
+
+    @keyframes slideInUp {
+      0% {
+        opacity: 0;
+        transform: translateY(100px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
   </style>
 </head>
 <body>
@@ -42,6 +80,23 @@
     <input type="text" id="nameInput" placeholder="Enter your name">
     <button onclick="start()">Start</button>
     <p id="greeting"></p>
+  </div>
+
+  <div class="container attractions">
+    <h2>Attractions</h2>
+    <div class="attraction animation">
+      <h3>Castillo San Felipe del Morro</h3>
+      <img src="morro.jpg" alt="Castillo San Felipe del Morro">
+      <p>The most iconic fortification built by the Spanish in the Americas, covering a 140-foot-high promontory at the entrance to the Bay of San Juan.</p>
+      <p>Cost: $10.00</p>
+      <p>Website: <a href="https://www.nps.gov/saju/planyourvisit/castle.htm">Learn more</a></p>
+    </div>
+    <!-- Add more attractions here -->
+  </div>
+
+  <div class="container restaurants">
+    <h2>Restaurants</h2>
+    <!-- Add restaurants here -->
   </div>
 
   <script>
