@@ -35,27 +35,20 @@
       background-color: #0056b3;
     }
 
-    .attractions, .restaurants {
+    .categories {
       margin-top: 50px;
+    }
+
+    .category {
+      margin-bottom: 30px;
     }
 
     h2 {
       margin-bottom: 20px;
     }
 
-    .attraction, .restaurant {
-      margin-bottom: 30px;
-    }
-
-    .attraction img, .restaurant img {
-      max-width: 100%;
-      height: auto;
-      border-radius: 8px;
-      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    }
-
-    .attraction p, .restaurant p {
-      margin-top: 10px;
+    .attractions, .restaurants {
+      display: none;
     }
 
     .animation {
@@ -72,6 +65,14 @@
         transform: translateY(0);
       }
     }
+
+    .attraction, .restaurant {
+      display: none;
+    }
+
+    .show {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -82,21 +83,57 @@
     <p id="greeting"></p>
   </div>
 
+  <div class="container categories">
+    <div class="category animation">
+      <h2>Attractions</h2>
+      <button onclick="showAttractions(1)">Attraction 1</button>
+      <button onclick="showAttractions(2)">Attraction 2</button>
+      <button onclick="showAttractions(3)">Attraction 3</button>
+    </div>
+
+    <div class="category animation">
+      <h2>Restaurants</h2>
+      <button onclick="showRestaurants(1)">Restaurant 1</button>
+      <button onclick="showRestaurants(2)">Restaurant 2</button>
+      <button onclick="showRestaurants(3)">Restaurant 3</button>
+    </div>
+  </div>
+
   <div class="container attractions">
-    <h2>Attractions</h2>
-    <div class="attraction animation">
+    <div class="attraction animation" id="attraction1">
+      <h2>Attraction 1</h2>
       <h3>Castillo San Felipe del Morro</h3>
       <img src="morro.jpg" alt="Castillo San Felipe del Morro">
       <p>The most iconic fortification built by the Spanish in the Americas, covering a 140-foot-high promontory at the entrance to the Bay of San Juan.</p>
       <p>Cost: $10.00</p>
-      <p>Website: <a href="https://www.nps.gov/saju/planyourvisit/castle.htm">Learn more</a></p>
     </div>
-    <!-- Add more attractions here -->
+
+    <div class="attraction animation" id="attraction2">
+      <h2>Attraction 2</h2>
+      <!-- Add details for Attraction 2 here -->
+    </div>
+
+    <div class="attraction animation" id="attraction3">
+      <h2>Attraction 3</h2>
+      <!-- Add details for Attraction 3 here -->
+    </div>
   </div>
 
   <div class="container restaurants">
-    <h2>Restaurants</h2>
-    <!-- Add restaurants here -->
+    <div class="restaurant animation" id="restaurant1">
+      <h2>Restaurant 1</h2>
+      <!-- Add details for Restaurant 1 here -->
+    </div>
+
+    <div class="restaurant animation" id="restaurant2">
+      <h2>Restaurant 2</h2>
+      <!-- Add details for Restaurant 2 here -->
+    </div>
+
+    <div class="restaurant animation" id="restaurant3">
+      <h2>Restaurant 3</h2>
+      <!-- Add details for Restaurant 3 here -->
+    </div>
   </div>
 
   <script>
@@ -106,11 +143,26 @@
       const name = nameInput.value.trim();
 
       if (name !== '') {
-        greeting.textContent = 'Hello, ' + name + '!';
-        // You can add code here to transition to the next section of the website
+        greeting.textContent = 'Welcome, ' + name + '! I hope you enjoy ツ';
+        document.getElementById('nameInput').style.display = 'none';
+        document.querySelector('.categories').classList.add('animation');
       } else {
         alert('Please enter your name.');
       }
+    }
+
+    function showAttractions(attractionNumber) {
+      document.querySelector('.categories').style.display = 'none';
+      document.querySelector('.attractions').style.display = 'block';
+      document.querySelector('.attraction').style.display = 'none';
+      document.getElementById('attraction' + attractionNumber).classList.add('show');
+    }
+
+    function showRestaurants(restaurantNumber) {
+      document.querySelector('.categories').style.display = 'none';
+      document.querySelector('.restaurants').style.display = 'block';
+      document.querySelector('.restaurant').style.display = 'none';
+      document.getElementById('restaurant' + restaurantNumber).classList.add('show');
     }
   </script>
 </body>
