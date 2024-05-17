@@ -23,48 +23,33 @@
       text-align: center;
     }
     .dropdown {
-      display: flex;
-      justify-content: space-around;
-      margin-bottom: 20px;
+      position: relative;
+      display: inline-block;
     }
-    button {
-      padding: 10px 20px;
-      margin: 10px;
+    .dropbtn {
       background-color: #007bff;
-      color: #fff;
+      color: white;
+      padding: 10px;
+      font-size: 16px;
       border: none;
       cursor: pointer;
     }
-    button:hover {
-      background-color: #0056b3;
-    }
-    .details {
+    .dropdown-content {
       display: none;
-      text-align: left;
-      margin-top: 20px;
+      position: absolute;
+      background-color: #f9f9f9;
+      min-width: 160px;
+      box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+      z-index: 1;
     }
-    .cost-button {
-      background-color: transparent;
-      border: none;
-      color: #007bff;
-      font-size: 24px;
-      cursor: pointer;
+    .dropdown-content a {
+      color: black;
+      padding: 12px 16px;
+      text-decoration: none;
+      display: block;
     }
-    .cost-button:hover {
-      color: #0056b3;
-    }
-    .rotate {
-      animation: rotate 1s;
-    }
-    @keyframes rotate {
-      from { transform: rotate(0deg); }
-      to { transform: rotate(360deg); }
-    }
-    img {
-      width: 100%;
-      max-width: 400px;
-      height: auto;
-    }
+    .dropdown-content a:hover {background-color: #f1f1f1}
+    .show {display:block;}
   </style>
 </head>
 <body>
@@ -73,59 +58,61 @@
   </header>
   <main class="container">
     <div class="dropdown">
-      <button onclick="toggleDetails('attractions')">Attractions</button>
-      <button onclick="toggleDetails('restaurants')">Restaurants</button>
-    </div>
-    <div id="attractions" class="details">
-      <h2>Attractions</h2>
-      <div id="attraction1">
-        <p>Name: <strong>Attraction 1</strong></p>
-        <p>Details: <strong>Coming soon</strong></p>
-        <button class="cost-button" onclick="revealCost(this, 'attraction1Cost')">💲</button>
-        <p id="attraction1Cost" style="display: none;">Cost: $0</p>
-        <div id="attraction1Image"></div>
-        <button onclick="enhancePicture(this, 'normal')">Normal</button>
-        <button onclick="enhancePicture(this, 'hd')">HD</button>
+      <button onclick="toggleDropdown('attractionsDropdown')" class="dropbtn">Attractions</button>
+      <div id="attractionsDropdown" class="dropdown-content">
+        <a href="#" onclick="showDetails('attraction1')">Attraction 1</a>
+        <a href="#" onclick="showDetails('attraction2')">Attraction 2</a>
+        <a href="#" onclick="showDetails('attraction3')">Attraction 3</a>
       </div>
-      <!-- Repeat for Attraction 2 and Attraction 3 -->
     </div>
-    <div id="restaurants" class="details">
-      <h2>Restaurants</h2>
-      <div id="restaurant1">
-        <p>Name: <strong>Restaurant 1</strong></p>
-        <p>Details: <strong>Coming soon</strong></p>
-        <button class="cost-button" onclick="revealCost(this, 'restaurant1Cost')">💲</button>
-        <p id="restaurant1Cost" style="display: none;">Cost: $0</p>
-        <div id="restaurant1Image"></div>
-        <button onclick="enhancePicture(this, 'normal')">Normal</button>
-        <button onclick="enhancePicture(this, 'hd')">HD</button>
+    <div class="dropdown">
+      <button onclick="toggleDropdown('restaurantsDropdown')" class="dropbtn">Restaurants</button>
+      <div id="restaurantsDropdown" class="dropdown-content">
+        <a href="#" onclick="showDetails('restaurant1')">Restaurant 1</a>
+        <a href="#" onclick="showDetails('restaurant2')">Restaurant 2</a>
+        <a href="#" onclick="showDetails('restaurant3')">Restaurant 3</a>
       </div>
-      <!-- Repeat for Restaurant 2 and Restaurant 3 -->
+    </div>
+    <div id="details" style="margin-top: 20px;">
+      <!-- Details will be loaded here -->
     </div>
   </main>
   <script>
-    let lastOpened = null;
-    function toggleDetails(sectionId) {
-      const section = document.getElementById(sectionId);
-      if (lastOpened && lastOpened !== section) {
-        lastOpened.style.display = 'none';
+    function toggleDropdown(id) {
+      document.getElementById(id).classList.toggle("show");
+    }
+
+    function showDetails(id) {
+      const details = document.getElementById('details');
+      details.innerHTML = `
+        <h2>${id}</h2>
+        <p>Name: <strong>${id}</strong></p>
+        <p>Details: <strong>Coming soon</strong></p>
+        <button class="cost-button">💲</button>
+        <button onclick="alert('Normal quality image')">Normal</button>
+        <button onclick="alert('HD quality image')">HD</button>
+      `;
+      // Close dropdowns
+      var dropdowns = document.getElementsByClassName("dropdown-content");
+      for (var i = 0; i < dropdowns.length; i++) {
+        var openDropdown = dropdowns[i];
+        if (openDropdown.classList.contains('show')) {
+          openDropdown.classList.remove('show');
+        }
       }
-      section.style.display = section.style.display === 'block' ? 'none' : 'block';
-      lastOpened = section.style.display === 'block' ? section : null;
     }
 
-    function revealCost(button, costId) {
-      const costElement = document.getElementById(costId);
-      costElement.style.display = 'block';
-      button.classList.add('rotate');
-      setTimeout(() => {
-        button.classList.remove('rotate');
-      }, 1000);
-    }
-
-    function enhancePicture(button, quality) {
-      const imgContainer = button.parentNode.querySelector('div');
-      imgContainer.innerHTML = `<img src="${quality === 'hd' ? 'https://via.placeholder.com/800x400' : 'https://via.placeholder.com/400x200'}" alt="Image">`;
+    // Close the dropdown if the user clicks outside of it
+    window.onclick = function(event) {
+      if (!event.target.matches('.dropbtn')) {
+        var dropdowns = document.getElementsByClassName("dropdown-content");
+        for (var i = 0; i < dropdowns.length; i++) {
+          var openDropdown = dropdowns[i];
+          if (openDropdown.classList.contains('show')) {
+            openDropdown.classList.remove('show');
+          }
+        }
+      }
     }
   </script>
 </body>
