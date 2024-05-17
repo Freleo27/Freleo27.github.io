@@ -43,6 +43,16 @@
       text-align: left;
       margin-top: 20px;
     }
+    .cost-button {
+      background-color: transparent;
+      border: none;
+      color: #007bff;
+      font-size: 24px;
+      cursor: pointer;
+    }
+    .cost-button:hover {
+      color: #0056b3;
+    }
     .rotate {
       animation: rotate 1s;
     }
@@ -68,29 +78,38 @@
     </div>
     <div id="attractions" class="details">
       <h2>Attractions</h2>
-      <p>Name: <strong>Attraction 1</strong></p>
-      <p>Details: <strong>Coming soon</strong></p>
-      <button onclick="revealCost(this)">💲</button>
-      <p>Cost: <strong>Coming soon</strong></p>
-      <img src="https://via.placeholder.com/400x200" alt="Attraction Image">
-      <button onclick="enhancePicture(this, 'normal')">Normal</button>
-      <button onclick="enhancePicture(this, 'hd')">HD</button>
+      <div id="attraction1">
+        <p>Name: <strong>Attraction 1</strong></p>
+        <p>Details: <strong>Coming soon</strong></p>
+        <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
+        <p>Cost: <strong>$0</strong></p>
+        <img src="https://via.placeholder.com/400x200" alt="Attraction Image">
+        <button onclick="enhancePicture(this, 'normal')">Normal</button>
+        <button onclick="enhancePicture(this, 'hd')">HD</button>
+      </div>
     </div>
     <div id="restaurants" class="details">
       <h2>Restaurants</h2>
-      <p>Name: <strong>Restaurant 1</strong></p>
-      <p>Details: <strong>Coming soon</strong></p>
-      <button onclick="revealCost(this)">💲</button>
-      <p>Cost: <strong>Coming soon</strong></p>
-      <img src="https://via.placeholder.com/400x200" alt="Restaurant Image">
-      <button onclick="enhancePicture(this, 'normal')">Normal</button>
-      <button onclick="enhancePicture(this, 'hd')">HD</button>
+      <div id="restaurant1">
+        <p>Name: <strong>Restaurant 1</strong></p>
+        <p>Details: <strong>Coming soon</strong></p>
+        <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
+        <p>Cost: <strong>$0</strong></p>
+        <img src="https://via.placeholder.com/400x200" alt="Restaurant Image">
+        <button onclick="enhancePicture(this, 'normal')">Normal</button>
+        <button onclick="enhancePicture(this, 'hd')">HD</button>
+      </div>
     </div>
   </main>
   <script>
+    let lastOpened = null;
     function toggleDetails(sectionId) {
       const section = document.getElementById(sectionId);
+      if (lastOpened && lastOpened !== section) {
+        lastOpened.style.display = 'none';
+      }
       section.style.display = section.style.display === 'block' ? 'none' : 'block';
+      lastOpened = section.style.display === 'block' ? section : null;
     }
 
     function revealCost(button) {
