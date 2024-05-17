@@ -89,6 +89,9 @@
       height: auto;
       border-radius: 5px;
     }
+    .bold {
+      font-weight: bold;
+    }
   </style>
 </head>
 <body>
@@ -156,6 +159,33 @@
             'https://museo.org/wp-content/uploads/2023/09/CLS1245-copy-scaled.jpg',
             'https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,q_75,w_1200/v1/crm/denver/Sirena-Lowrider-Justin-Favela-and-Westside-Dreams-Daniel-Salazar-2-WEB-ONLY_3B2CA0D8-87C3-4189-9DACBF30CF24BED2_5aeed293-2b75-446c-8e70e95ebcedce37.jpg'
           ]
+        },
+        'Ana\'s Cafe Restaurant': {
+          name: 'Ana\'s Cafe Restaurant',
+          details: 'A delightful spot for ice cream and waffles.',
+          cost: '$10-20',
+          images: [
+            'https://media-cdn.grubhub.com/image/upload/d_search:browse-images:default.jpg/w_1200,q_auto,fl_lossy,dpr_auto,c_fill,f_auto,h_800,g_auto/w9xsulhmlzhpjxqlz5oz',
+            'https://s3-media0.fl.yelpcdn.com/bphoto/Iqy37xCLgmY7ND1PycxSrg/348s.jpg'
+          ]
+        },
+        'Sofia\'s Italian Steakhouse': {
+          name: 'Sofia\'s Italian Steakhouse',
+          details: 'Known for its exquisite steaks and Italian dishes.',
+          cost: '$12-38',
+          images: [
+            'https://img.hoodline.com/2024/2/west-roxburys-beloved-sofia-italian-steakhouse-to-close-after-16-years-paving-way-for-new-restaurant-concept-6.webp',
+            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQpjJ8m1GDPLEqWhf7DJGuFrPlnn4MZxaTW3YdioU4Ww&s'
+          ]
+        },
+        'St. Germain Bistro & Cafe': {
+          name: 'St. Germain Bistro & Cafe',
+          details: 'Perfect for a light, healthy meal or a hearty brunch.',
+          cost: '$5.00',
+          images: [
+            'https://bistrostgermain.com/wp-content/uploads/2017/05/cropped-Cafe-St-Germain-6.jpg',
+            'https://images.squarespace-cdn.com/content/v1/5d69edaca45b7900017ad37a/1567714753452-MAIN7GS4D1CZR2FYM57H/16473092_1359389307425036_88808220614465828_n.jpg?format=2500w'
+          ]
         }
       };
 
@@ -165,7 +195,7 @@
           <h2>${attraction.name}</h2>
           <p>Details: <strong>${attraction.details}</strong></p>
           <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
-          <p id="cost" style="display: none;">Cost: ${attraction.cost}</p>
+          <p id="cost" class="bold" style="display: none;">Cost: ${attraction.cost}</p>
           <div class="images-container">
             ${attraction.images.map(img => `<img src="${img}" alt="Image of ${attraction.name}">`).join('')}
           </div>
