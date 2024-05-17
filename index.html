@@ -48,12 +48,12 @@
       margin-bottom: 20px;
     }
 
-    .attractions, .restaurants {
-      display: none;
-    }
-
     .dropdown {
       margin-top: 20px;
+    }
+
+    .dropdown button {
+      margin: 5px;
     }
 
     select, input[type="text"] {
@@ -65,6 +65,42 @@
     .loading {
       font-size: 24px;
       margin-top: 20px;
+    }
+
+    .details {
+      display: none;
+      margin-top: 20px;
+    }
+
+    .details p {
+      margin-bottom: 10px;
+    }
+
+    .hd-button {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 16px;
+      margin: 4px 2px;
+      transition-duration: 0.4s;
+      cursor: pointer;
+    }
+
+    .hd-button:hover {
+      background-color: #45a049;
+    }
+
+    .rotate {
+      animation: rotate 1s;
+    }
+
+    @keyframes rotate {
+      0% { transform: rotate(0deg); }
+      100% { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -82,11 +118,93 @@
     <section class="categories">
       <div class="category animation">
         <h2>Attractions</h2>
-        <div class="dropdown" id="attractionsDropdown"></div>
+        <div class="dropdown">
+          <button onclick="showDetails('attraction1')">Attraction 1</button>
+          <button onclick="showDetails('attraction2')">Attraction 2</button>
+          <button onclick="showDetails('attraction3')">Attraction 3</button>
+        </div>
       </div>
       <div class="category animation">
         <h2>Restaurants</h2>
-        <div class="dropdown" id="restaurantsDropdown"></div>
+        <div class="dropdown">
+          <button onclick="showDetails('restaurant1')">Restaurant 1</button>
+          <button onclick="showDetails('restaurant2')">Restaurant 2</button>
+          <button onclick="showDetails('restaurant3')">Restaurant 3</button>
+        </div>
+      </div>
+    </section>
+    <section class="details">
+      <div id="attraction1" class="attraction">
+        <h2>Attraction 1</h2>
+        <div class="info">
+          <p><strong>Name:</strong> Coming soon</p>
+          <p><strong>Details:</strong> Coming soon</p>
+          <button class="cost-button" onclick="revealCost('attraction1')">💲</button>
+          <p id="attraction1Cost" style="display: none;">Cost: Coming soon</p>
+          <button class="hd-button" onclick="enhancePicture('attraction1')">Normal</button>
+          <button class="hd-button" onclick="enhancePicture('attraction1')">HD</button>
+          <div class="pictures" id="attraction1Pictures">**Type url for picture**</div>
+        </div>
+      </div>
+      <div id="attraction2" class="attraction">
+        <h2>Attraction 2</h2>
+        <div class="info">
+          <p><strong>Name:</strong> Coming soon</p>
+          <p><strong>Details:</strong> Coming soon</p>
+          <button class="cost-button" onclick="revealCost('attraction2')">💲</button>
+          <p id="attraction2Cost" style="display: none;">Cost: Coming soon</p>
+          <button class="hd-button" onclick="enhancePicture('attraction2')">Normal</button>
+          <button class="hd-button" onclick="enhancePicture('attraction2')">HD</button>
+          <div class="pictures" id="attraction2Pictures">**Type url for picture**</div>
+        </div>
+      </div>
+      <div id="attraction3" class="attraction">
+        <h2>Attraction 3</h2>
+        <div class="info">
+          <p><strong>Name:</strong> Coming soon</p>
+          <p><strong>Details:</strong> Coming soon</p>
+          <button class="cost-button" onclick="revealCost('attraction3')">💲</button>
+          <p id="attraction3Cost" style="display: none;">Cost: Coming soon</p>
+          <button class="hd-button" onclick="enhancePicture('attraction3')">Normal</button>
+          <button class="hd-button" onclick="enhancePicture('attraction3')">HD</button>
+          <div class="pictures" id="attraction3Pictures">**Type url for picture**</div>
+        </div>
+      </div>
+      <div id="restaurant1" class="restaurant">
+        <h2>Restaurant 1</h2>
+        <div class="info">
+          <p><strong>Name:</strong> Coming soon</p>
+          <p><strong>Details:</strong> Coming soon</p>
+          <button class="cost-button" onclick="revealCost('restaurant1')">💲</button>
+          <p id="restaurant1Cost" style="display: none;">Cost: Coming soon</p>
+          <button class="hd-button" onclick="enhancePicture('restaurant1')">Normal</button>
+          <button class="hd-button" onclick="enhancePicture('restaurant1')">HD</button>
+          <div class="pictures" id="restaurant1Pictures">**Type url for picture**</div>
+        </div>
+      </div>
+      <div id="restaurant2" class="restaurant">
+        <h2>Restaurant 2</h2>
+        <div class="info">
+          <p><strong>Name:</strong> Coming soon</p>
+          <p><strong>Details:</strong> Coming soon</p>
+          <button class="cost-button" onclick="revealCost('restaurant2')">💲</button>
+          <p id="restaurant2Cost" style="display: none;">Cost: Coming soon</p>
+          <button class="hd-button" onclick="enhancePicture('restaurant2')">Normal</button>
+          <button class="hd-button" onclick="enhancePicture('restaurant2')">HD</button>
+          <div class="pictures" id="restaurant2Pictures">**Type url for picture**</div>
+        </div>
+      </div>
+      <div id="restaurant3" class="restaurant">
+        <h2>Restaurant 3</h2>
+        <div class="info">
+          <p><strong>Name:</strong> Coming soon</p>
+          <p><strong>Details:</strong> Coming soon</p>
+          <button class="cost-button" onclick="revealCost('restaurant3')">💲</button>
+          <p id="restaurant3Cost" style="display: none;">Cost: Coming soon</p>
+          <button class="hd-button" onclick="enhancePicture('restaurant3')">Normal</button>
+          <button class="hd-button" onclick="enhancePicture('restaurant3')">HD</button>
+          <div class="pictures" id="restaurant3Pictures">**Type url for picture**</div>
+        </div>
       </div>
     </section>
   </main>
@@ -126,25 +244,30 @@
       }
     }
 
-    function createDropdowns() {
-      const attractionsDropdown = document.getElementById('attractionsDropdown');
-      const restaurantsDropdown = document.getElementById('restaurantsDropdown');
-
-      const defaultOption = document.createElement('option');
-      defaultOption.text = 'N/A';
-
-      for (let i = 1; i <= 3; i++) {
-        const optionAttractions = defaultOption.cloneNode(true);
-        optionAttractions.text = 'Attraction ' + i;
-        attractionsDropdown.appendChild(optionAttractions);
-
-        const optionRestaurants = defaultOption.cloneNode(true);
-        optionRestaurants.text = 'Restaurant ' + i;
-        restaurantsDropdown.appendChild(optionRestaurants);
-      }
+    function showDetails(id) {
+      document.querySelectorAll('.attraction, .restaurant').forEach(function(el) {
+        el.style.display = 'none';
+      });
+      document.getElementById(id).style.display = 'block';
     }
 
-    window.onload = createDropdowns;
+    function revealCost(id) {
+      const cost = document.getElementById(id + 'Cost');
+      const button = document.querySelector('#' + id + ' .cost-button');
+      cost.style.display = 'inline';
+      button.classList.add('rotate');
+      setTimeout(() => {
+        button.classList.remove('rotate');
+      }, 1000);
+    }
+
+    function enhancePicture(id) {
+      const pictures = document.getElementById(id + 'Pictures');
+      const hdButton = document.querySelector('#' + id + ' .hd-button');
+      // You can replace the image URL here
+      pictures.innerHTML = '<img src="https://via.placeholder.com/400x200" alt="Placeholder Image">';
+      hdButton.textContent = 'HD';
+    }
   </script>
 </body>
 </html>
