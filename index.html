@@ -3,10 +3,11 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Spainsh</title>
+  <title>A Day in Puerto Rico</title>
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
     body {
-      font-family: 'Arial', sans-serif;
+      font-family: 'Roboto', sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f0f0f0;
@@ -94,30 +95,36 @@
   <header>
     <h1>Welcome to One Day in Puerto Rico</h1>
   </header>
-  <main class="container">
-    <div class="dropdown">
-      <button onclick="toggleDropdown('attractionsDropdown')" class="dropbtn">Attractions</button>
-      <div id="attractionsDropdown" class="dropdown-content">
-        <a href="#" onclick="showDetails('Castillo San Felipe del Morro')">Castillo San Felipe del Morro</a>
-        <a href="#" onclick="showDetails('Attraction 2')">Attraction 2</a>
-        <a href="#" onclick="showDetails('Attraction 3')">Attraction 3</a>
+  <main class="container" role="main">
+    <div class="dropdown" role="menu">
+      <button aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown('attractionsDropdown')" class="dropbtn">Attractions</button>
+      <div id="attractionsDropdown" class="dropdown-content" role="menu">
+        <a href="#" role="menuitem" onclick="showDetails('Castillo San Felipe del Morro')">Castillo San Felipe del Morro</a>
+        <a href="#" role="menuitem" onclick="showDetails('San Juan National Historic Site')">San Juan National Historic Site</a>
+        <a href="#" role="menuitem" onclick="showDetails('Las Americas Museum')">Las Americas Museum</a>
       </div>
     </div>
-    <div class="dropdown">
-      <button onclick="toggleDropdown('restaurantsDropdown')" class="dropbtn">Restaurants</button>
-      <div id="restaurantsDropdown" class="dropdown-content">
-        <a href="#" onclick="showDetails('Restaurant 1')">Restaurant 1</a>
-        <a href="#" onclick="showDetails('Restaurant 2')">Restaurant 2</a>
-        <a href="#" onclick="showDetails('Restaurant 3')">Restaurant 3</a>
+    <div class="dropdown" role="menu">
+      <button aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown('restaurantsDropdown')" class="dropbtn">Restaurants</button>
+      <div id="restaurantsDropdown" class="dropdown-content" role="menu">
+        <a href="#" role="menuitem" onclick="showDetails('Ana\'s Cafe Restaurant')">Ana's Cafe Restaurant</a>
+        <a href="#" role="menuitem" onclick="showDetails('Sofia\'s Italian Steakhouse')">Sofia's Italian Steakhouse</a>
+        <a href="#" role="menuitem" onclick="showDetails('St. Germain Bistro & Cafe')">St. Germain Bistro & Cafe</a>
       </div>
     </div>
-    <div id="details" style="margin-top: 20px;">
+    <div id="details" style="margin-top: 20px;" aria-live="polite">
       <!-- Details will be loaded here -->
     </div>
   </main>
   <script>
     function toggleDropdown(id) {
-      document.getElementById(id).classList.toggle("show");
+      var dropdown = document.getElementById(id);
+      var isOpen = dropdown.classList.contains('show');
+      closeDropdowns();
+      if (!isOpen) {
+        dropdown.classList.add('show');
+        dropdown.previousElementSibling.setAttribute('aria-expanded', 'true');
+      }
     }
 
     function showDetails(name) {
@@ -128,21 +135,27 @@
           details: 'The most iconic fortification built by the Spanish in the Americas, covers a 140 foot-high promontory at the entrance to the Bay of San Juan.',
           cost: '$10.00',
           images: [
-            'https://www.discoverpuertorico.com/sites/default/files/styles/horizontal_narrow_800x600/public/2023-08/191-3-3920_jpeg.jpg?h=f2fcf546&itok=SGoV2IYZ',
-            'https://media.cntraveler.com/photos/5d4ae57ac30e780008e4b7c2/16:9/w_2560,c_limit/01-PuertoRico-2019-CastilloSanFelipedelMorro-GettyImages-564187447.jpg'
+            'https://www.nps.gov/common/uploads/grid_builder/saju/crop16_9/774AA5FF-1DD8-B71B-0B63C1B37E007657.jpg?width=1300&quality=90&mode=crop',
+            'https://www.visittheusa.com/sites/default/files/styles/hero_l/public/images/hero_media_image/2019-03/25604da76da6a3a03e23af49fc182b1f.jpeg?h=f2d9d7a1&itok=2CQBM030'
           ]
         },
-        'Attraction 2': {
-          name: 'Attraction 2',
-          details: 'Details of Attraction 2',
-          cost: '$20.00',
-          images: []
+        'San Juan National Historic Site': {
+          name: 'San Juan National Historic Site',
+          details: 'The oldest European construction in the territory of the United States and one of the oldest in the New World.',
+          cost: '$80.00',
+          images: [
+            'https://www.nps.gov/common/uploads/grid_builder/saju/crop16_9/774AA5FF-1DD8-B71B-0B63C1B37E007657.jpg?width=1300&quality=90&mode=crop',
+            'https://www.visittheusa.com/sites/default/files/styles/hero_l/public/images/hero_media_image/2019-03/25604da76da6a3a03e23af49fc182b1f.jpeg?h=f2d9d7a1&itok=2CQBM030'
+          ]
         },
-        'Attraction 3': {
-          name: 'Attraction 3',
-          details: 'Details of Attraction 3',
-          cost: '$30.00',
-          images: []
+        'Las Americas Museum': {
+          name: 'Las Americas Museum',
+          details: 'A museum that has four permanent exhibits which are put on display to show the American experiences throughout the centuries.',
+          cost: '$8-10',
+          images: [
+            'https://museo.org/wp-content/uploads/2023/09/CLS1245-copy-scaled.jpg',
+            'https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,q_75,w_1200/v1/crm/denver/Sirena-Lowrider-Justin-Favela-and-Westside-Dreams-Daniel-Salazar-2-WEB-ONLY_3B2CA0D8-87C3-4189-9DACBF30CF24BED2_5aeed293-2b75-446c-8e70e95ebcedce37.jpg'
+          ]
         }
       };
 
@@ -154,7 +167,7 @@
           <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
           <p id="cost" style="display: none;">Cost: ${attraction.cost}</p>
           <div class="images-container">
-            ${attraction.images.map(img => `<img src="${img}" alt="${attraction.name}">`).join('')}
+            ${attraction.images.map(img => `<img src="${img}" alt="Image of ${attraction.name}">`).join('')}
           </div>
         `;
       }
@@ -175,6 +188,7 @@
         var openDropdown = dropdowns[i];
         if (openDropdown.classList.contains('show')) {
           openDropdown.classList.remove('show');
+          openDropdown.previousElementSibling.setAttribute('aria-expanded', 'false');
         }
       }
     }
