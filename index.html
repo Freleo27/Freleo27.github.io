@@ -105,7 +105,7 @@
     </div>
     <div class="dropdown">
       <button onclick="toggleDropdown('restaurantsDropdown')" class="dropbtn">Restaurants</button>
-      <div id="restaurantsDropdown" class="dropdown-content">
+      <div id="restaurantsDropdown" the "dropdown-content">
         <a href="#" onclick="showDetails('Restaurant 1')">Restaurant 1</a>
         <a href="#" onclick="showDetails('Restaurant 2')">Restaurant 2</a>
         <a href="#" onclick="showDetails('Restaurant 3')">Restaurant 3</a>
@@ -124,8 +124,7 @@
       const details = document.getElementById('details');
       if (name === 'Attraction 1') {
         details.innerHTML = `
-          <h2>Castillo San Felipe del Morro</h2>
-          <p>Name: <strong>Castillo San Felipe del Morro</strong></p>
+          <h2>${name}</h2>
           <p>Details: <strong>The most iconic fortification built by the Spanish in the Americas, covers a 140 foot-high promontory at the entrance to the Bay of San Juan.</strong></p>
           <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
           <p id="cost" style="display: none;">Cost: $10.00</p>
@@ -135,6 +134,7 @@
           </div>
         `;
       }
+      // Add similar conditions for other attractions and restaurants
       closeDropdowns();
     }
 
