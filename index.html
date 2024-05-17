@@ -98,7 +98,7 @@
     <div class="dropdown">
       <button onclick="toggleDropdown('attractionsDropdown')" class="dropbtn">Attractions</button>
       <div id="attractionsDropdown" class="dropdown-content">
-        <a href="#" onclick="showDetails('Attraction 1')">Attraction 1</a>
+        <a href="#" onclick="showDetails('Castillo San Felipe del Morro')">Castillo San Felipe del Morro</a>
         <a href="#" onclick="showDetails('Attraction 2')">Attraction 2</a>
         <a href="#" onclick="showDetails('Attraction 3')">Attraction 3</a>
       </div>
@@ -122,19 +122,42 @@
 
     function showDetails(name) {
       const details = document.getElementById('details');
-      if (name === 'Attraction 1') {
+      const attractions = {
+        'Castillo San Felipe del Morro': {
+          name: 'Castillo San Felipe del Morro',
+          details: 'The most iconic fortification built by the Spanish in the Americas, covers a 140 foot-high promontory at the entrance to the Bay of San Juan.',
+          cost: '$10.00',
+          images: [
+            'https://www.discoverpuertorico.com/sites/default/files/styles/horizontal_narrow_800x600/public/2023-08/191-3-3920_jpeg.jpg?h=f2fcf546&itok=SGoV2IYZ',
+            'https://media.cntraveler.com/photos/5d4ae57ac30e780008e4b7c2/16:9/w_2560,c_limit/01-PuertoRico-2019-CastilloSanFelipedelMorro-GettyImages-564187447.jpg'
+          ]
+        },
+        'Attraction 2': {
+          name: 'Attraction 2',
+          details: 'Details of Attraction 2',
+          cost: '$20.00',
+          images: []
+        },
+        'Attraction 3': {
+          name: 'Attraction 3',
+          details: 'Details of Attraction 3',
+          cost: '$30.00',
+          images: []
+        }
+      };
+
+      if (attractions[name]) {
+        const attraction = attractions[name];
         details.innerHTML = `
-          <h2>${name}</h2>
-          <p>Details: <strong>The most iconic fortification built by the Spanish in the Americas, covers a 140 foot-high promontory at the entrance to the Bay of San Juan.</strong></p>
+          <h2>${attraction.name}</h2>
+          <p>Details: <strong>${attraction.details}</strong></p>
           <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
-          <p id="cost" style="display: none;">Cost: $10.00</p>
+          <p id="cost" style="display: none;">Cost: ${attraction.cost}</p>
           <div class="images-container">
-            <img src="https://www.discoverpuertorico.com/sites/default/files/styles/horizontal_narrow_800x600/public/2023-08/191-3-3920_jpeg.jpg?h=f2fcf546&itok=SGoV2IYZ" alt="Castillo San Felipe del Morro">
-            <img src="https://media.cntraveler.com/photos/5d4ae57ac30e780008e4b7c2/16:9/w_2560,c_limit/01-PuertoRico-2019-CastilloSanFelipedelMorro-GettyImages-564187447.jpg" alt="Castillo San Felipe del Morro">
+            ${attraction.images.map(img => `<img src="${img}" alt="${attraction.name}">`).join('')}
           </div>
         `;
       }
-      // Add similar conditions for other attractions and restaurants
       closeDropdowns();
     }
 
