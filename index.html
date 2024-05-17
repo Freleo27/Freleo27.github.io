@@ -6,32 +6,42 @@
   <title>A Day in Puerto Rico</title>
   <style>
     body {
-      font-family: Arial, sans-serif;
+      font-family: 'Arial', sans-serif;
       margin: 0;
       padding: 0;
       background-color: #f0f0f0;
       display: flex;
       flex-direction: column;
       align-items: center;
+      background-image: linear-gradient(to right, #6a11cb, #2575fc);
+      color: #ffffff;
     }
     header {
       text-align: center;
       margin-top: 20px;
+      color: #fff;
     }
     .container {
       max-width: 800px;
       text-align: center;
+      padding: 20px;
+      background: rgba(255, 255, 255, 0.8);
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      margin-top: 20px;
     }
     .dropdown {
       position: relative;
       display: inline-block;
+      margin: 10px;
     }
     .dropbtn {
       background-color: #007bff;
       color: white;
-      padding: 10px;
+      padding: 10px 20px;
       font-size: 16px;
       border: none;
+      border-radius: 5px;
       cursor: pointer;
     }
     .dropdown-content {
@@ -41,15 +51,33 @@
       min-width: 160px;
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
+      border-radius: 5px;
     }
     .dropdown-content a {
       color: black;
       padding: 12px 16px;
       text-decoration: none;
       display: block;
+      border-radius: 5px;
     }
     .dropdown-content a:hover {background-color: #f1f1f1}
     .show {display:block;}
+    .cost-button {
+      background-color: transparent;
+      border: none;
+      color: #007bff;
+      font-size: 24px;
+      cursor: pointer;
+      animation-duration: 1s;
+    }
+    .rotate {
+      animation-name: rotate;
+      animation-iteration-count: 1;
+    }
+    @keyframes rotate {
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
+    }
   </style>
 </head>
 <body>
@@ -60,17 +88,17 @@
     <div class="dropdown">
       <button onclick="toggleDropdown('attractionsDropdown')" class="dropbtn">Attractions</button>
       <div id="attractionsDropdown" class="dropdown-content">
-        <a href="#" onclick="showDetails('attraction1')">Attraction 1</a>
-        <a href="#" onclick="showDetails('attraction2')">Attraction 2</a>
-        <a href="#" onclick="showDetails('attraction3')">Attraction 3</a>
+        <a href="#" onclick="showDetails('Attraction 1')">Attraction 1</a>
+        <a href="#" onclick="showDetails('Attraction 2')">Attraction 2</a>
+        <a href="#" onclick="showDetails('Attraction 3')">Attraction 3</a>
       </div>
     </div>
     <div class="dropdown">
       <button onclick="toggleDropdown('restaurantsDropdown')" class="dropbtn">Restaurants</button>
       <div id="restaurantsDropdown" class="dropdown-content">
-        <a href="#" onclick="showDetails('restaurant1')">Restaurant 1</a>
-        <a href="#" onclick="showDetails('restaurant2')">Restaurant 2</a>
-        <a href="#" onclick="showDetails('restaurant3')">Restaurant 3</a>
+        <a href="#" onclick="showDetails('Restaurant 1')">Restaurant 1</a>
+        <a href="#" onclick="showDetails('Restaurant 2')">Restaurant 2</a>
+        <a href="#" onclick="showDetails('Restaurant 3')">Restaurant 3</a>
       </div>
     </div>
     <div id="details" style="margin-top: 20px;">
@@ -82,17 +110,28 @@
       document.getElementById(id).classList.toggle("show");
     }
 
-    function showDetails(id) {
+    function showDetails(name) {
       const details = document.getElementById('details');
       details.innerHTML = `
-        <h2>${id}</h2>
-        <p>Name: <strong>${id}</strong></p>
+        <h2>${name}</h2>
+        <p>Name: <strong>${name}</strong></p>
         <p>Details: <strong>Coming soon</strong></p>
-        <button class="cost-button">💲</button>
-        <button onclick="alert('Normal quality image')">Normal</button>
-        <button onclick="alert('HD quality image')">HD</button>
+        <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
+        <p id="${name}Cost" style="display: none;">Cost: $0</p>
       `;
-      // Close dropdowns
+      closeDropdowns();
+    }
+
+    function revealCost(button) {
+      button.classList.add('rotate');
+      const costId = button.nextElementSibling.id;
+      document.getElementById(costId).style.display = 'block';
+      setTimeout(() => {
+        button.classList.remove('rotate');
+      }, 1000);
+    }
+
+    function closeDropdowns() {
       var dropdowns = document.getElementsByClassName("dropdown-content");
       for (var i = 0; i < dropdowns.length; i++) {
         var openDropdown = dropdowns[i];
@@ -102,16 +141,9 @@
       }
     }
 
-    // Close the dropdown if the user clicks outside of it
     window.onclick = function(event) {
       if (!event.target.matches('.dropbtn')) {
-        var dropdowns = document.getElementsByClassName("dropdown-content");
-        for (var i = 0; i < dropdowns.length; i++) {
-          var openDropdown = dropdowns[i];
-          if (openDropdown.classList.contains('show')) {
-            openDropdown.classList.remove('show');
-          }
-        }
+        closeDropdowns();
       }
     }
   </script>
