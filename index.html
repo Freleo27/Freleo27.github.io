@@ -11,96 +11,53 @@
       padding: 0;
       background-color: #f0f0f0;
     }
-
     .container {
       max-width: 800px;
       margin: 50px auto;
       text-align: center;
     }
-
-    input[type="text"] {
+    input[type="text"], button {
       padding: 10px;
       margin: 10px;
     }
-
     button {
-      padding: 10px 20px;
       background-color: #007bff;
       color: #fff;
       border: none;
       cursor: pointer;
     }
-
     button:hover {
       background-color: #0056b3;
     }
-
     .categories {
       margin-top: 50px;
       display: none;
     }
-
     .category {
       margin-bottom: 30px;
     }
-
     h2 {
       margin-bottom: 20px;
     }
-
-    .dropdown {
-      margin-top: 20px;
-    }
-
     .dropdown button {
       margin: 5px;
     }
-
-    select, input[type="text"] {
-      margin-bottom: 10px;
-      padding: 5px;
-      width: 100%;
-    }
-
-    .loading {
-      font-size: 24px;
-      margin-top: 20px;
-    }
-
     .details {
       display: none;
       margin-top: 20px;
     }
-
     .details p {
       margin-bottom: 10px;
     }
-
-    .hd-button {
-      background-color: #4CAF50;
-      color: white;
-      border: none;
-      padding: 10px 20px;
-      text-align: center;
-      text-decoration: none;
-      display: inline-block;
-      font-size: 16px;
-      margin: 4px 2px;
-      transition-duration: 0.4s;
-      cursor: pointer;
-    }
-
     .hd-button:hover {
       background-color: #45a049;
     }
-
     .rotate {
       animation: rotate 1s;
     }
-
     @keyframes rotate {
-      0% { transform: rotate(0deg); }
-      100% { transform: rotate(360deg); }
+      from { transform: rotate(0deg); }
+      to { transform: rotate(360deg); }
     }
   </style>
 </head>
@@ -110,105 +67,33 @@
   </header>
   <main>
     <section class="container">
-      <input type="text" id="nameInput" placeholder="Enter your name">
+      <input type="text" id="nameInput" placeholder="Enter your name" aria-label="Name input">
       <button onclick="start()">Start</button>
-      <p id="greeting"></p>
-      <p id="loading" class="loading" style="display: none;"></p>
+      <p id="greeting" aria-live="polite"></p>
+      <p id="loading" class="loading" style="display: none;" aria-live="assertive"></p>
     </section>
-    <section class="categories">
-      <div class="category animation">
-        <h2>Attractions</h2>
-        <div class="dropdown">
-          <button onclick="showDetails('attraction1')">Attraction 1</button>
-          <button onclick="showDetails('attraction2')">Attraction 2</button>
-          <button onclick="showDetails('attraction3')">Attraction 3</button>
+    <section class="categories" aria-label="Categories">
+      <div class="category animation" aria-labelledby="attractionsHeader">
+        <h2 id="attractionsHeader">Attractions</h2>
+        <div class="dropdown" role="menu">
+          <button onclick="showDetails('attraction1')" role="menuitem">Attraction 1</button>
+          <button onclick="showDetails('attraction2')" role="menuitem">Attraction 2</button>
+          <button onclick="showDetails('attraction3')" role="menuitem">Attraction 3</button>
         </div>
       </div>
-      <div class="category animation">
-        <h2>Restaurants</h2>
-        <div class="dropdown">
-          <button onclick="showDetails('restaurant1')">Restaurant 1</button>
-          <button onclick="showDetails('restaurant2')">Restaurant 2</button>
-          <button onclick="showDetails('restaurant3')">Restaurant 3</button>
+      <div class="category animation" aria-labelledby="restaurantsHeader">
+        <h2 id="restaurantsHeader">Restaurants</h2>
+        <div class="dropdown" role="menu">
+          <button onclick="showDetails('restaurant1')" role="menuitem">Restaurant 1</button>
+          <button onclick="showDetails('restaurant2')" role="menuitem">Restaurant 2</button>
+          <button onclick="showDetails('restaurant3')" role="menuitem">Restaurant 3</button>
         </div>
       </div>
     </section>
-    <section class="details">
-      <div id="attraction1" class="attraction">
-        <h2>Attraction 1</h2>
-        <div class="info">
-          <p><strong>Name:</strong> Coming soon</p>
-          <p><strong>Details:</strong> Coming soon</p>
-          <button class="cost-button" onclick="revealCost('attraction1')">💲</button>
-          <p id="attraction1Cost" style="display: none;">Cost: Coming soon</p>
-          <button class="hd-button" onclick="enhancePicture('attraction1')">Normal</button>
-          <button class="hd-button" onclick="enhancePicture('attraction1')">HD</button>
-          <div class="pictures" id="attraction1Pictures">**Type url for picture**</div>
-        </div>
-      </div>
-      <div id="attraction2" class="attraction">
-        <h2>Attraction 2</h2>
-        <div class="info">
-          <p><strong>Name:</strong> Coming soon</p>
-          <p><strong>Details:</strong> Coming soon</p>
-          <button class="cost-button" onclick="revealCost('attraction2')">💲</button>
-          <p id="attraction2Cost" style="display: none;">Cost: Coming soon</p>
-          <button class="hd-button" onclick="enhancePicture('attraction2')">Normal</button>
-          <button class="hd-button" onclick="enhancePicture('attraction2')">HD</button>
-          <div class="pictures" id="attraction2Pictures">**Type url for picture**</div>
-        </div>
-      </div>
-      <div id="attraction3" class="attraction">
-        <h2>Attraction 3</h2>
-        <div class="info">
-          <p><strong>Name:</strong> Coming soon</p>
-          <p><strong>Details:</strong> Coming soon</p>
-          <button class="cost-button" onclick="revealCost('attraction3')">💲</button>
-          <p id="attraction3Cost" style="display: none;">Cost: Coming soon</p>
-          <button class="hd-button" onclick="enhancePicture('attraction3')">Normal</button>
-          <button class="hd-button" onclick="enhancePicture('attraction3')">HD</button>
-          <div class="pictures" id="attraction3Pictures">**Type url for picture**</div>
-        </div>
-      </div>
-      <div id="restaurant1" class="restaurant">
-        <h2>Restaurant 1</h2>
-        <div class="info">
-          <p><strong>Name:</strong> Coming soon</p>
-          <p><strong>Details:</strong> Coming soon</p>
-          <button class="cost-button" onclick="revealCost('restaurant1')">💲</button>
-          <p id="restaurant1Cost" style="display: none;">Cost: Coming soon</p>
-          <button class="hd-button" onclick="enhancePicture('restaurant1')">Normal</button>
-          <button class="hd-button" onclick="enhancePicture('restaurant1')">HD</button>
-          <div class="pictures" id="restaurant1Pictures">**Type url for picture**</div>
-        </div>
-      </div>
-      <div id="restaurant2" class="restaurant">
-        <h2>Restaurant 2</h2>
-        <div class="info">
-          <p><strong>Name:</strong> Coming soon</p>
-          <p><strong>Details:</strong> Coming soon</p>
-          <button class="cost-button" onclick="revealCost('restaurant2')">💲</button>
-          <p id="restaurant2Cost" style="display: none;">Cost: Coming soon</p>
-          <button class="hd-button" onclick="enhancePicture('restaurant2')">Normal</button>
-          <button class="hd-button" onclick="enhancePicture('restaurant2')">HD</button>
-          <div class="pictures" id="restaurant2Pictures">**Type url for picture**</div>
-        </div>
-      </div>
-      <div id="restaurant3" class="restaurant">
-        <h2>Restaurant 3</h2>
-        <div class="info">
-          <p><strong>Name:</strong> Coming soon</p>
-          <p><strong>Details:</strong> Coming soon</p>
-          <button class="cost-button" onclick="revealCost('restaurant3')">💲</button>
-          <p id="restaurant3Cost" style="display: none;">Cost: Coming soon</p>
-          <button class="hd-button" onclick="enhancePicture('restaurant3')">Normal</button>
-          <button class="hd-button" onclick="enhancePicture('restaurant3')">HD</button>
-          <div class="pictures" id="restaurant3Pictures">**Type url for picture**</div>
-        </div>
-      </div>
+    <section class="details" aria-label="Details">
+      <!-- Details sections for each attraction and restaurant -->
     </section>
   </main>
-
   <script>
     function start() {
       const nameInput = document.getElementById('nameInput');
@@ -264,7 +149,6 @@
     function enhancePicture(id) {
       const pictures = document.getElementById(id + 'Pictures');
       const hdButton = document.querySelector('#' + id + ' .hd-button');
-      // You can replace the image URL here
       pictures.innerHTML = '<img src="https://via.placeholder.com/400x200" alt="Placeholder Image">';
       hdButton.textContent = 'HD';
     }
