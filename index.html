@@ -81,24 +81,26 @@
       <div id="attraction1">
         <p>Name: <strong>Attraction 1</strong></p>
         <p>Details: <strong>Coming soon</strong></p>
-        <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
-        <p>Cost: <strong>$0</strong></p>
-        <img src="https://via.placeholder.com/400x200" alt="Attraction Image">
+        <button class="cost-button" onclick="revealCost(this, 'attraction1Cost')">💲</button>
+        <p id="attraction1Cost" style="display: none;">Cost: $0</p>
+        <div id="attraction1Image"></div>
         <button onclick="enhancePicture(this, 'normal')">Normal</button>
         <button onclick="enhancePicture(this, 'hd')">HD</button>
       </div>
+      <!-- Repeat for Attraction 2 and Attraction 3 -->
     </div>
     <div id="restaurants" class="details">
       <h2>Restaurants</h2>
       <div id="restaurant1">
         <p>Name: <strong>Restaurant 1</strong></p>
         <p>Details: <strong>Coming soon</strong></p>
-        <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
-        <p>Cost: <strong>$0</strong></p>
-        <img src="https://via.placeholder.com/400x200" alt="Restaurant Image">
+        <button class="cost-button" onclick="revealCost(this, 'restaurant1Cost')">💲</button>
+        <p id="restaurant1Cost" style="display: none;">Cost: $0</p>
+        <div id="restaurant1Image"></div>
         <button onclick="enhancePicture(this, 'normal')">Normal</button>
         <button onclick="enhancePicture(this, 'hd')">HD</button>
       </div>
+      <!-- Repeat for Restaurant 2 and Restaurant 3 -->
     </div>
   </main>
   <script>
@@ -112,7 +114,9 @@
       lastOpened = section.style.display === 'block' ? section : null;
     }
 
-    function revealCost(button) {
+    function revealCost(button, costId) {
+      const costElement = document.getElementById(costId);
+      costElement.style.display = 'block';
       button.classList.add('rotate');
       setTimeout(() => {
         button.classList.remove('rotate');
@@ -120,9 +124,8 @@
     }
 
     function enhancePicture(button, quality) {
-      const img = button.parentNode.querySelector('img');
-      img.src = quality === 'hd' ? 'https://via.placeholder.com/800x400' : 'https://via.placeholder.com/400x200';
-      img.alt = quality === 'hd' ? 'High Definition Image' : 'Standard Quality Image';
+      const imgContainer = button.parentNode.querySelector('div');
+      imgContainer.innerHTML = `<img src="${quality === 'hd' ? 'https://via.placeholder.com/800x400' : 'https://via.placeholder.com/400x200'}" alt="Image">`;
     }
   </script>
 </body>
