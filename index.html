@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A Day in Mexico</title>
+  <title>A Day in Puerto Rico</title>
   <style>
     body {
       font-family: 'Arial', sans-serif;
@@ -78,11 +78,21 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+    .images-container {
+      display: flex;
+      justify-content: space-around;
+      margin-top: 20px;
+    }
+    img {
+      width: 45%;
+      height: auto;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
   <header>
-    <h1>Welcome to One Day in Mexico</h1>
+    <h1>Welcome to One Day in Puerto Rico</h1>
   </header>
   <main class="container">
     <div class="dropdown">
@@ -112,20 +122,25 @@
 
     function showDetails(name) {
       const details = document.getElementById('details');
-      details.innerHTML = `
-        <h2>${name}</h2>
-        <p>Name: <strong>${name}</strong></p>
-        <p>Details: <strong>Coming soon</strong></p>
-        <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
-        <p id="${name}Cost" style="display: none;">Cost: $0</p>
-      `;
+      if (name === 'Attraction 1') {
+        details.innerHTML = `
+          <h2>Castillo San Felipe del Morro</h2>
+          <p>Name: <strong>Castillo San Felipe del Morro</strong></p>
+          <p>Details: <strong>The most iconic fortification built by the Spanish in the Americas, covers a 140 foot-high promontory at the entrance to the Bay of San Juan.</strong></p>
+          <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
+          <p id="cost" style="display: none;">Cost: $10.00</p>
+          <div class="images-container">
+            <img src="https://www.discoverpuertorico.com/sites/default/files/styles/horizontal_narrow_800x600/public/2023-08/191-3-3920_jpeg.jpg?h=f2fcf546&itok=SGoV2IYZ" alt="Castillo San Felipe del Morro">
+            <img src="https://media.cntraveler.com/photos/5d4ae57ac30e780008e4b7c2/16:9/w_2560,c_limit/01-PuertoRico-2019-CastilloSanFelipedelMorro-GettyImages-564187447.jpg" alt="Castillo San Felipe del Morro">
+          </div>
+        `;
+      }
       closeDropdowns();
     }
 
     function revealCost(button) {
       button.classList.add('rotate');
-      const costId = button.nextElementSibling.id;
-      document.getElementById(costId).style.display = 'block';
+      document.getElementById('cost').style.display = 'block';
       setTimeout(() => {
         button.classList.remove('rotate');
       }, 1000);
