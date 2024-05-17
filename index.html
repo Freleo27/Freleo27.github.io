@@ -10,17 +10,26 @@
       margin: 0;
       padding: 0;
       background-color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    header {
+      text-align: center;
+      margin-top: 20px;
     }
     .container {
       max-width: 800px;
-      margin: 50px auto;
       text-align: center;
     }
-    input[type="text"], button {
-      padding: 10px;
-      margin: 10px;
+    .dropdown {
+      display: flex;
+      justify-content: space-around;
+      margin-bottom: 20px;
     }
     button {
+      padding: 10px 20px;
+      margin: 10px;
       background-color: #007bff;
       color: #fff;
       border: none;
@@ -29,28 +38,10 @@
     button:hover {
       background-color: #0056b3;
     }
-    .categories {
-      margin-top: 50px;
-      display: none;
-    }
-    .category {
-      margin-bottom: 30px;
-    }
-    h2 {
-      margin-bottom: 20px;
-    }
-    .dropdown button {
-      margin: 5px;
-    }
     .details {
       display: none;
+      text-align: left;
       margin-top: 20px;
-    }
-    .details p {
-      margin-bottom: 10px;
-    }
-    .hd-button:hover {
-      background-color: #45a049;
     }
     .rotate {
       animation: rotate 1s;
@@ -59,98 +50,60 @@
       from { transform: rotate(0deg); }
       to { transform: rotate(360deg); }
     }
+    img {
+      width: 100%;
+      max-width: 400px;
+      height: auto;
+    }
   </style>
 </head>
 <body>
   <header>
     <h1>Welcome to One Day in Puerto Rico</h1>
   </header>
-  <main>
-    <section class="container">
-      <input type="text" id="nameInput" placeholder="Enter your name" aria-label="Name input">
-      <button onclick="start()">Start</button>
-      <p id="greeting" aria-live="polite"></p>
-      <p id="loading" class="loading" style="display: none;" aria-live="assertive"></p>
-    </section>
-    <section class="categories" aria-label="Categories">
-      <div class="category animation" aria-labelledby="attractionsHeader">
-        <h2 id="attractionsHeader">Attractions</h2>
-        <div class="dropdown" role="menu">
-          <button onclick="showDetails('attraction1')" role="menuitem">Attraction 1</button>
-          <button onclick="showDetails('attraction2')" role="menuitem">Attraction 2</button>
-          <button onclick="showDetails('attraction3')" role="menuitem">Attraction 3</button>
-        </div>
-      </div>
-      <div class="category animation" aria-labelledby="restaurantsHeader">
-        <h2 id="restaurantsHeader">Restaurants</h2>
-        <div class="dropdown" role="menu">
-          <button onclick="showDetails('restaurant1')" role="menuitem">Restaurant 1</button>
-          <button onclick="showDetails('restaurant2')" role="menuitem">Restaurant 2</button>
-          <button onclick="showDetails('restaurant3')" role="menuitem">Restaurant 3</button>
-        </div>
-      </div>
-    </section>
-    <section class="details" aria-label="Details">
-      <!-- Details sections for each attraction and restaurant -->
-    </section>
+  <main class="container">
+    <div class="dropdown">
+      <button onclick="toggleDetails('attractions')">Attractions</button>
+      <button onclick="toggleDetails('restaurants')">Restaurants</button>
+    </div>
+    <div id="attractions" class="details">
+      <h2>Attractions</h2>
+      <p>Name: <strong>Attraction 1</strong></p>
+      <p>Details: <strong>Coming soon</strong></p>
+      <button onclick="revealCost(this)">💲</button>
+      <p>Cost: <strong>Coming soon</strong></p>
+      <img src="https://via.placeholder.com/400x200" alt="Attraction Image">
+      <button onclick="enhancePicture(this, 'normal')">Normal</button>
+      <button onclick="enhancePicture(this, 'hd')">HD</button>
+    </div>
+    <div id="restaurants" class="details">
+      <h2>Restaurants</h2>
+      <p>Name: <strong>Restaurant 1</strong></p>
+      <p>Details: <strong>Coming soon</strong></p>
+      <button onclick="revealCost(this)">💲</button>
+      <p>Cost: <strong>Coming soon</strong></p>
+      <img src="https://via.placeholder.com/400x200" alt="Restaurant Image">
+      <button onclick="enhancePicture(this, 'normal')">Normal</button>
+      <button onclick="enhancePicture(this, 'hd')">HD</button>
+    </div>
   </main>
   <script>
-    function start() {
-      const nameInput = document.getElementById('nameInput');
-      const greeting = document.getElementById('greeting');
-      const loading = document.getElementById('loading');
-      const name = nameInput.value.trim();
-
-      if (name !== '') {
-        greeting.textContent = 'Welcome, ' + name + '! Loading...';
-        loading.style.display = 'block';
-        setTimeout(() => {
-          loading.textContent = 'Loading... 5';
-        }, 1000);
-        setTimeout(() => {
-          loading.textContent = 'Loading... 4';
-        }, 2000);
-        setTimeout(() => {
-          loading.textContent = 'Loading... 3';
-        }, 3000);
-        setTimeout(() => {
-          loading.textContent = 'Loading... 2';
-        }, 4000);
-        setTimeout(() => {
-          loading.textContent = 'Loading... 1';
-        }, 5000);
-        setTimeout(() => {
-          loading.style.display = 'none';
-          document.querySelector('.container').style.display = 'none';
-          document.querySelector('.categories').style.display = 'block';
-        }, 6000);
-      } else {
-        alert('Please enter your name.');
-      }
+    function toggleDetails(sectionId) {
+      const section = document.getElementById(sectionId);
+      section.style.display = section.style.display === 'block' ? 'none' : 'block';
     }
 
-    function showDetails(id) {
-      document.querySelectorAll('.attraction, .restaurant').forEach(function(el) {
-        el.style.display = 'none';
-      });
-      document.getElementById(id).style.display = 'block';
-    }
-
-    function revealCost(id) {
-      const cost = document.getElementById(id + 'Cost');
-      const button = document.querySelector('#' + id + ' .cost-button');
-      cost.style.display = 'inline';
+    function revealCost(button) {
       button.classList.add('rotate');
       setTimeout(() => {
         button.classList.remove('rotate');
       }, 1000);
     }
 
-    function enhancePicture(id) {
-      const pictures = document.getElementById(id + 'Pictures');
-      const hdButton = document.querySelector('#' + id + ' .hd-button');
-      pictures.innerHTML = '<img src="https://via.placeholder.com/400x200" alt="Placeholder Image">';
-      hdButton.textContent = 'HD';
+    function enhancePicture(button, quality) {
+      const img = button.parentNode.querySelector('img');
+      img.src = quality === 'hd' ? 'https://via.placeholder.com/800x400' : 'https://via.placeholder.com/400x200';
+      img.alt = quality === 'hd' ? 'High Definition Image' : 'Standard Quality Image';
     }
   </script>
 </body>
