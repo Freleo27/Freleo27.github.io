@@ -17,7 +17,7 @@
       background-image: url('https://www.discoverpuertorico.com/sites/default/files/styles/horizontal_narrow_800x600/public/2023-08/191-3-3920_jpeg.jpg?h=f2fcf546&itok=SGoV2IYZ');
       background-size: cover;
       background-position: center;
-      color: #ffffff;
+      color: #333;
     }
     header {
       text-align: center;
@@ -101,6 +101,31 @@
       font-size: 12px;
       color: rgba(255, 255, 255, 0.7);
     }
+    .restaurant-image {
+      width: 300px;
+      height: 200px;
+      margin-bottom: 10px;
+    }
+    .food-image {
+      width: 200px;
+      height: 150px;
+      margin-bottom: 10px;
+    }
+    .restaurant-button {
+      background-color: #007bff;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .restaurant-button:hover {
+      background-color: #0056b3;
+    }
+    .restaurant-details {
+      margin-top: 20px;
+    }
   </style>
 </head>
 <body>
@@ -124,7 +149,7 @@
         <a href="#" role="menuitem" onclick="showDetails('St. Germain Bistro & Cafe')">St. Germain Bistro & Cafe</a>
       </div>
     </div>
-    <div id="details" style="margin-top: 20px;" aria-live="polite">
+    <div id="details" class="restaurant-details" aria-live="polite">
       <!-- Details will be loaded here -->
     </div>
   </main>
@@ -177,7 +202,10 @@
           images: [
             'https://menufyproduction.imgix.net/638458430591676603+1375424.png?auto=compress,format&h=400&w=600&fit=max',
             'https://s3-media0.fl.yelpcdn.com/bphoto/Iqy37xCLgmY7ND1PycxSrg/348s.jpg'
-          ]
+          ],
+          menu: {
+            'ICE CREAM WAFFLE SUNDAE': 'https://healthysimpleyum.com/wp-content/uploads/2022/06/torta-de-portobello-scaled.jpg'
+          }
         },
         'Sofia\'s Italian Steakhouse': {
           name: 'Sofia\'s Italian Steakhouse',
@@ -186,7 +214,10 @@
           images: [
             'https://www.eatthis.com/wp-content/uploads/sites/4/2022/11/Capital-Grille-in-Hartford.jpg?quality=82&strip=all&w=640',
             'https://img.hoodline.com/2024/2/west-roxburys-beloved-sofia-italian-steakhouse-to-close-after-16-years-paving-way-for-new-restaurant-concept-6.webp'
-          ]
+          ],
+          menu: {
+            'Fried Calamari with Sweet or Hot Sauce': 'https://www.eatthis.com/wp-content/uploads/sites/4/2022/11/Capital-Grille-in-Hartford.jpg?quality=82&strip=all&w=640'
+          }
         },
         'St. Germain Bistro & Cafe': {
           name: 'St. Germain Bistro & Cafe',
@@ -195,7 +226,10 @@
           images: [
             'https://healthysimpleyum.com/wp-content/uploads/2022/06/torta-de-portobello-scaled.jpg',
             'https://bistrostgermain.com/wp-content/uploads/2017/05/cropped-Cafe-St-Germain-6.jpg'
-          ]
+          ],
+          menu: {
+            'Fruit Bowl': 'https://healthysimpleyum.com/wp-content/uploads/2022/06/torta-de-portobello-scaled.jpg'
+          }
         }
       };
 
@@ -209,6 +243,15 @@
           <div class="images-container">
             ${attraction.images.map(img => `<img src="${img}" alt="Image of ${attraction.name}">`).join('')}
           </div>
+        `;
+      } else {
+        const restaurant = attractions[name];
+        details.innerHTML = `
+          <h2>${restaurant.name}</h2>
+          <div class="images-container">
+            ${restaurant.images.map(img => `<img src="${img}" class="restaurant-image" alt="Image of ${restaurant.name}">`).join('')}
+          </div>
+          <button class="restaurant-button" onclick="showFood('${name}')">Show Food</button>
         `;
       }
       closeDropdowns();
@@ -231,6 +274,26 @@
           openDropdown.previousElementSibling.setAttribute('aria-expanded', 'false');
         }
       }
+    }
+
+    function showFood(restaurantName) {
+      const restaurant = attractions[restaurantName];
+      let foodList = '';
+      for (const [meal, image] of Object.entries(restaurant.menu)) {
+        foodList += `
+          <div>
+            <h3>${meal}</h3>
+            <img src="${image}" class="food-image" alt="Image of ${meal}">
+          </div>
+        `;
+      }
+      const details = document.getElementById('details');
+      details.innerHTML += `
+        <div class="food-details">
+          <h2>Food at ${restaurant.name}</h2>
+          ${foodList}
+        </div>
+      `;
     }
 
     window.onclick = function(event) {
