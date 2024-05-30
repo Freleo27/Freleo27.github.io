@@ -122,17 +122,17 @@
     <div class="dropdown" role="menu">
       <button aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown('attractionsDropdown')" class="dropbtn">Attractions</button>
       <div id="attractionsDropdown" class="dropdown-content" role="menu">
-        <a href="#" role="menuitem" onclick="showDetails('Castillo San Felipe del Morro')">Attraction 1</a>
-        <a href="#" role="menuitem" onclick="showDetails('San Juan National Historic Site')">Attraction 2</a>
-        <a href="#" role="menuitem" onclick="showDetails('Las Americas Museum')">Attraction 3</a>
+        <a href="#" role="menuitem" onclick="showDetails('Castillo San Felipe del Morro')">1</a>
+        <a href="#" role="menuitem" onclick="showDetails('San Juan National Historic Site')">2</a>
+        <a href="#" role="menuitem" onclick="showDetails('Las Americas Museum')">3</a>
       </div>
     </div>
     <div class="dropdown" role="menu">
       <button aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown('restaurantsDropdown')" class="dropbtn">Restaurants</button>
       <div id="restaurantsDropdown" class="dropdown-content" role="menu">
-        <a href="#" role="menuitem" onclick="showDetails('Ana\'s Cafe Restaurant')">Restaurant 1</a>
-        <a href="#" role="menuitem" onclick="showDetails('Sofia\'s Italian Steakhouse')">Restaurant 2</a>
-        <a href="#" role="menuitem" onclick="showDetails('St. Germain Bistro & Cafe')">Restaurant 3</a>
+        <a href="#" role="menuitem" onclick="showDetails('Ana\'s Cafe Restaurant')">1</a>
+        <a href="#" role="menuitem" onclick="showDetails('Sofia\'s Italian Steakhouse')">2</a>
+        <a href="#" role="menuitem" onclick="showDetails('St. Germain Bistro & Cafe')">3</a>
       </div>
     </div>
     <div id="details" style="margin-top: 20px;" aria-live="polite">
@@ -158,8 +158,8 @@
           details: 'The most iconic fortification built by the Spanish in the Americas, covers a 140 foot-high promontory at the entrance to the Bay of San Juan.',
           cost: '$10.00',
           images: [
-            'https://www.discoverpuertorico.com/sites/default/files/styles/horizontal_narrow_800x600/public/2023-08/191-3-3920_jpeg.jpg?h=f2fcf546&itok=SGoV2IYZ',
-            'https://www.visittheusa.com/sites/default/files/styles/hero_l/public/images/hero_media_image/2019-03/25604da76da6a3a03e23af49fc182b1f.jpeg?h=f2d9d7a1&itok=2CQBM030'
+            'https://www.planetware.com/wpimages/2020/07/puerto-rico-in-pictures-beautiful-places-to-photograph-el-yunque-national-forest.jpg',
+            'https://www.tripsavvy.com/thmb/f1lMYw6ndg66dmwmBYcWLa4yg9w=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/san-juan-58d88c2c3df78c51623c387e.jpg'
           ]
         },
         'San Juan National Historic Site': {
@@ -167,8 +167,8 @@
           details: 'The oldest European construction in the territory of the United States and one of the oldest in the New World.',
           cost: '$80.00',
           images: [
-            'https://www.nps.gov/common/uploads/grid_builder/saju/crop16_9/774AA5FF-1DD8-B71B-0B63C1B37E007657.jpg?width=1300&quality=90&mode=crop',
-            'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Puerto_Rico_%E2%80%94_San_Juan_%E2%80%94_Castillo_San_Crist%C3%B3bal_%28sign%29.JPG/340px-Puerto_Rico_%E2%80%94_San_Juan_%E2%80%94_Castillo_San_Crist%C3%B3bal_%28sign%29.JPG'
+            'https://www.planetware.com/photos-large/PUR/puerto-rico-san-juan-national-historic-site.jpg',
+            'https://www.nps.gov/common/uploads/grid_builder/saju/crop16_9/774AA5FF-1DD8-B71B-0B63C1B37E007657.jpg?width=1300&quality=90&mode=crop'
           ]
         },
         'Las Americas Museum': {
@@ -190,77 +190,66 @@
           ],
           food: [
             { name: 'ICE CREAM WAFFLE SUNDAE', image: 'https://menufyproduction.imgix.net/638458430591676603+1375424.png?auto=compress,format&h=400&w=600&fit=max' },
-            { name: 'Buffalo Wings W Fries', image: 'https://menufyproduction.imgix.net/638439453244320453+1353973.png?auto=compress,format&h=400&w=600&fit=max' }
+            { name: 'Buffalo Wings W Fries', image: 'https://menufyproduction.imgix.net/638508194922875609+161635.png?auto=compress,format&h=400&w=600&fit=max' }
           ]
         },
         'Sofia\'s Italian Steakhouse': {
           name: 'Sofia\'s Italian Steakhouse',
-          details: 'Known for its exquisite steaks and Italian dishes.',
-          cost: '$20.00',
+          details: 'Famous for its great tasting food and famous desserts, combining fresh seasonal ingredients with authentic Italian cuisine.',
+          cost: '$100.00',
           images: [
-            'https://img.hoodline.com/2024/2/west-roxburys-beloved-sofia-italian-steakhouse-to-close-after-16-years-paving-way-for-new-restaurant-concept-6.webp',
-            'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQpjJ8m1GDPLEqWhf7DJGuFrPlnn4MZxaTW3YdioU4Ww&s'
+            'https://images.squarespace-cdn.com/content/v1/6053557534f07671f07f0bd9/1616012760346-AGPGOIWMWYN46FV7DBQ2/SteakHouseTableSetting.png',
+            'https://media-cdn.tripadvisor.com/media/photo-s/0d/bd/0c/29/family-restaurant.jpg'
           ],
           food: [
-            { name: 'Spaghetti with Homemade Meatballs', image: 'https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*' },
-            { name: 'Sofia’s Salad', image: 'https://media.nbcboston.com/2023/02/SALAD-TIFFANI.jpg?quality=85&strip=all&resize=1200%2C675' }
+            { name: 'CARROT CAKE', image: 'https://bostonrestaurantblog.typepad.com/.a/6a0111685e3e91970c022ad3604182200c-800wi' },
+            { name: 'Caesar Salad', image: 'https://c4.wallpaperflare.com/wallpaper/788/232/856/caesar-salad-food-wallpaper-preview.jpg' }
           ]
         },
         'St. Germain Bistro & Cafe': {
           name: 'St. Germain Bistro & Cafe',
-          details: 'Perfect for a light, healthy meal or a hearty brunch.',
-          cost: '$5.00',
+          details: 'Combines modern Mediterranean flavors with traditional ingredients and classics.',
+          cost: '$40.00',
           images: [
-            'https://bistrostgermain.com/wp-content/uploads/2017/05/cropped-Cafe-St-Germain-6.jpg',
-            'https://images.squarespace-cdn.com/content/v1/5d69edaca45b7900017ad37a/1567714753452-MAIN7GS4D1CZR2FYM57H/16473092_1359389307425036_88808220614465828_n.jpg?format=2500w'
+            'https://media-cdn.tripadvisor.com/media/photo-s/02/4f/82/4e/st-germain-bistro-cafe.jpg',
+            'https://www.foodservicedirector.com/sites/foodservicedirector.com/files/2021-12/St-Germain-Des-Pres.png'
           ],
           food: [
-            { name: 'Sándwich', image: 'https://www.oliviascuisine.com/wp-content/uploads/2019/12/pernil-sandwich-thumb.jpg' },
-            { name: 'Croissant with Nutella', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXxhbZqBdsMUr-0cJCJx4O74nOHPLrgeLEYQ&s' }
+            { name: 'SPAGHETTI AGLIO E OLIO', image: 'https://img.taste.com.au/vbqrBPeJ/taste/2020/12/spaghetti-aglio-e-olio-167020-2.jpg' },
+            { name: 'Avocado Toast', image: 'https://images.squarespace-cdn.com/content/v1/567fa1554bf118fe440b03f0/1583420471495-KMXBHKNT7OCN6LVDETVK/Avocado-Toast-1.jpg' }
           ]
         }
       };
-
-      if (attractions[name]) {
-        const attraction = attractions[name];
+      const attraction = attractions[name];
+      if (attraction) {
         details.innerHTML = `
           <h2>${attraction.name}</h2>
-          <p>Details: <strong>${attraction.details}</strong></p>
-          <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
-          <p id="cost" class="bold" style="display: none;">Cost: ${attraction.cost}</p>
+          <p>${attraction.details}</p>
+          <p class="bold">Cost: ${attraction.cost}</p>
           <div class="images-container">
-            ${attraction.images.map(img => `<img src="${img}" alt="Image of ${attraction.name}">`).join('')}
+            ${attraction.images.map(img => `<img src="${img}" alt="${attraction.name}">`).join('')}
           </div>
+          ${attraction.food ? `
           <div class="food-container">
-            <h3>Food</h3>
-            ${attraction.food.map(food => `
+            ${attraction.food.map(item => `
               <div>
-                <p>${food.name}</p>
-                <img src="${food.image}" alt="${food.name}">
+                <img src="${item.image}" alt="${item.name}">
+                <p>${item.name}</p>
               </div>
             `).join('')}
-          </div>
+          </div>` : ''}
         `;
       }
-      closeDropdowns();
-    }
-
-    function revealCost(button) {
-      button.classList.add('rotate');
-      document.getElementById('cost').style.display = 'block';
-      setTimeout(() => {
-        button.classList.remove('rotate');
-      }, 1000);
     }
 
     function closeDropdowns() {
-      var dropdowns = document.getElementsByClassName("dropdown-content");
+      var dropdowns = document.getElementsByClassName('dropdown-content');
+      var buttons = document.getElementsByClassName('dropbtn');
       for (var i = 0; i < dropdowns.length; i++) {
-        var openDropdown = dropdowns[i];
-        if (openDropdown.classList.contains('show')) {
-          openDropdown.classList.remove('show');
-          openDropdown.previousElementSibling.setAttribute('aria-expanded', 'false');
-        }
+        dropdowns[i].classList.remove('show');
+      }
+      for (var i = 0; i < buttons.length; i++) {
+        buttons[i].setAttribute('aria-expanded', 'false');
       }
     }
 
