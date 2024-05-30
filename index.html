@@ -6,7 +6,6 @@
   <title>A Day in Puerto Rico</title>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
   <style>
-    /* CSS styles */
     body {
       font-family: 'Roboto', sans-serif;
       margin: 0;
@@ -116,7 +115,6 @@
   </style>
 </head>
 <body>
-  <!-- HTML content -->
   <header>
     <h1>Welcome to One Day in Puerto Rico</h1>
   </header>
@@ -142,7 +140,6 @@
     </div>
   </main>
   <script>
-    // JavaScript code
     function toggleDropdown(id) {
       var dropdown = document.getElementById(id);
       var isOpen = dropdown.classList.contains('show');
@@ -150,9 +147,6 @@
       if (!isOpen) {
         dropdown.classList.add('show');
         dropdown.previousElementSibling.setAttribute('aria-expanded', 'true');
-      } else {
-        dropdown.classList.remove('show');
-        dropdown.previousElementSibling.setAttribute('aria-expanded', 'false');
       }
     }
 
@@ -185,7 +179,9 @@
             'https://museo.org/wp-content/uploads/2023/09/CLS1245-copy-scaled.jpg',
             'https://assets.simpleviewinc.com/simpleview/image/upload/c_limit,q_75,w_1200/v1/crm/denver/Sirena-Lowrider-Justin-Favela-and-Westside-Dreams-Daniel-Salazar-2-WEB-ONLY_3B2CA0D8-87C3-4189-9DACBF30CF24BED2_5aeed293-2b75-446c-8e70e95ebcedce37.jpg'
           ]
-        },
+        }
+      };
+      const restaurants = {
         'Ana\'s Cafe Restaurant': {
           name: 'Ana\'s Cafe Restaurant',
           details: 'A delightful spot for ice cream and waffles.',
@@ -234,16 +230,38 @@
           <p>Details: <strong>${attraction.details}</strong></p>
           <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
           <p id="cost" class="bold" style="display: none;">Cost: ${attraction.cost}</p>
+          <div class="images-container">
+            ${attraction.images.map(img => `<img src="${img}" alt="Image of ${attraction.name}">`).join('')}
+          </div>
           <div class="food-container">
-  <h3>Food</h3>
-  ${attraction.food ? attraction.food.map(food => `
-    <div>
-      <p>${food.name}</p>
-      <img src="${food.image}" alt="${food.name}">
-    </div>
-  `).join('') : ''}
-</div>
-
+            <h3>Food</h3>
+            ${attraction.food.map(food => `
+              <div>
+                <p>${food.name}</p>
+                <img src="${food.image}" alt="${food.name}">
+              </div>
+            `).join('')}
+          </div>
+        `;
+      } else if (restaurants[name]) {
+        const restaurant = restaurants[name];
+        details.innerHTML = `
+          <h2>${restaurant.name}</h2>
+          <p>Details: <strong>${restaurant.details}</strong></p>
+          <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
+          <p id="cost" class="bold" style="display: none;">Cost: ${restaurant.cost}</p>
+          <div class="images-container">
+            ${restaurant.images.map(img => `<img src="${img}" alt="Image of ${restaurant.name}">`).join('')}
+          </div>
+          <div class="food-container">
+            <h3>Food</h3>
+            ${restaurant.food.map(food => `
+              <div>
+                <p>${food.name}</p>
+                <img src="${food.image}" alt="${food.name}">
+              </div>
+            `).join('')}
+          </div>
         `;
       }
       closeDropdowns();
