@@ -92,6 +92,26 @@
     .bold {
       font-weight: bold;
     }
+    .food-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-top: 20px;
+    }
+    .food-container div {
+      display: flex;
+      justify-content: space-between;
+      width: 90%;
+      margin-top: 10px;
+    }
+    .food-container div:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+    .food-container div img {
+      width: 45%;
+      height: auto;
+      border-radius: 5px;
+    }
   </style>
 </head>
 <body>
@@ -102,17 +122,17 @@
     <div class="dropdown" role="menu">
       <button aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown('attractionsDropdown')" class="dropbtn">Attractions</button>
       <div id="attractionsDropdown" class="dropdown-content" role="menu">
-        <a href="#" role="menuitem" onclick="showDetails('Castillo San Felipe del Morro')">1</a>
-        <a href="#" role="menuitem" onclick="showDetails('San Juan National Historic Site')">2</a>
-        <a href="#" role="menuitem" onclick="showDetails('Las Americas Museum')">3</a>
+        <a href="#" role="menuitem" onclick="showDetails('Castillo San Felipe del Morro')">Attraction 1</a>
+        <a href="#" role="menuitem" onclick="showDetails('San Juan National Historic Site')">Attraction 2</a>
+        <a href="#" role="menuitem" onclick="showDetails('Las Americas Museum')">Attraction 3</a>
       </div>
     </div>
     <div class="dropdown" role="menu">
       <button aria-haspopup="true" aria-expanded="false" onclick="toggleDropdown('restaurantsDropdown')" class="dropbtn">Restaurants</button>
       <div id="restaurantsDropdown" class="dropdown-content" role="menu">
-        <a href="#" role="menuitem" onclick="showDetails('Ana\'s Cafe Restaurant')">1</a>
-        <a href="#" role="menuitem" onclick="showDetails('Sofia\'s Italian Steakhouse')">2</a>
-        <a href="#" role="menuitem" onclick="showDetails('St. Germain Bistro & Cafe')">3</a>
+        <a href="#" role="menuitem" onclick="showDetails('Ana\'s Cafe Restaurant')">Restaurant 1</a>
+        <a href="#" role="menuitem" onclick="showDetails('Sofia\'s Italian Steakhouse')">Restaurant 2</a>
+        <a href="#" role="menuitem" onclick="showDetails('St. Germain Bistro & Cafe')">Restaurant 3</a>
       </div>
     </div>
     <div id="details" style="margin-top: 20px;" aria-live="polite">
@@ -138,8 +158,8 @@
           details: 'The most iconic fortification built by the Spanish in the Americas, covers a 140 foot-high promontory at the entrance to the Bay of San Juan.',
           cost: '$10.00',
           images: [
-            'https://www.planetware.com/wpimages/2020/07/puerto-rico-in-pictures-beautiful-places-to-photograph-el-yunque-national-forest.jpg',
-            'https://www.tripsavvy.com/thmb/f1lMYw6ndg66dmwmBYcWLa4yg9w=/2121x1414/filters:no_upscale():max_bytes(150000):strip_icc()/san-juan-58d88c2c3df78c51623c387e.jpg'
+            'https://www.discoverpuertorico.com/sites/default/files/styles/horizontal_narrow_800x600/public/2023-08/191-3-3920_jpeg.jpg?h=f2fcf546&itok=SGoV2IYZ',
+            'https://www.visittheusa.com/sites/default/files/styles/hero_l/public/images/hero_media_image/2019-03/25604da76da6a3a03e23af49fc182b1f.jpeg?h=f2d9d7a1&itok=2CQBM030'
           ]
         },
         'San Juan National Historic Site': {
@@ -147,8 +167,8 @@
           details: 'The oldest European construction in the territory of the United States and one of the oldest in the New World.',
           cost: '$80.00',
           images: [
-            'https://www.planetware.com/photos-large/PUR/puerto-rico-san-juan-national-historic-site.jpg',
-            'https://www.nps.gov/common/uploads/grid_builder/saju/crop16_9/774AA5FF-1DD8-B71B-0B63C1B37E007657.jpg?width=1300&quality=90&mode=crop'
+            'https://www.nps.gov/common/uploads/grid_builder/saju/crop16_9/774AA5FF-1DD8-B71B-0B63C1B37E007657.jpg?width=1300&quality=90&mode=crop',
+            'https://upload.wikimedia.org/wikipedia/commons/thumb/8/8d/Puerto_Rico_%E2%80%94_San_Juan_%E2%80%94_Castillo_San_Crist%C3%B3bal_%28sign%29.JPG/340px-Puerto_Rico_%E2%80%94_San_Juan_%E2%80%94_Castillo_San_Crist%C3%B3bal_%28sign%29.JPG'
           ]
         },
         'Las Americas Museum': {
@@ -167,6 +187,10 @@
           images: [
             'https://media-cdn.grubhub.com/image/upload/d_search:browse-images:default.jpg/w_1200,q_auto,fl_lossy,dpr_auto,c_fill,f_auto,h_800,g_auto/w9xsulhmlzhpjxqlz5oz',
             'https://s3-media0.fl.yelpcdn.com/bphoto/Iqy37xCLgmY7ND1PycxSrg/348s.jpg'
+          ],
+          food: [
+            { name: 'ICE CREAM WAFFLE SUNDAE', image: 'https://menufyproduction.imgix.net/638458430591676603+1375424.png?auto=compress,format&h=400&w=600&fit=max' },
+            { name: 'Buffalo Wings W Fries', image: 'https://menufyproduction.imgix.net/638439453244320453+1353973.png?auto=compress,format&h=400&w=600&fit=max' }
           ]
         },
         'Sofia\'s Italian Steakhouse': {
@@ -176,6 +200,10 @@
           images: [
             'https://img.hoodline.com/2024/2/west-roxburys-beloved-sofia-italian-steakhouse-to-close-after-16-years-paving-way-for-new-restaurant-concept-6.webp',
             'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRQpjJ8m1GDPLEqWhf7DJGuFrPlnn4MZxaTW3YdioU4Ww&s'
+          ],
+          food: [
+            { name: 'Spaghetti with Homemade Meatballs', image: 'https://hips.hearstapps.com/del.h-cdn.co/assets/17/39/2048x1024/landscape-1506456062-delish-spaghetti-meatballs.jpg?resize=1200:*' },
+            { name: 'Sofia’s Salad', image: 'https://media.nbcboston.com/2023/02/SALAD-TIFFANI.jpg?quality=85&strip=all&resize=1200%2C675' }
           ]
         },
         'St. Germain Bistro & Cafe': {
@@ -185,6 +213,10 @@
           images: [
             'https://bistrostgermain.com/wp-content/uploads/2017/05/cropped-Cafe-St-Germain-6.jpg',
             'https://images.squarespace-cdn.com/content/v1/5d69edaca45b7900017ad37a/1567714753452-MAIN7GS4D1CZR2FYM57H/16473092_1359389307425036_88808220614465828_n.jpg?format=2500w'
+          ],
+          food: [
+            { name: 'Sándwich', image: 'https://www.oliviascuisine.com/wp-content/uploads/2019/12/pernil-sandwich-thumb.jpg' },
+            { name: 'Croissant with Nutella', image: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTXxhbZqBdsMUr-0cJCJx4O74nOHPLrgeLEYQ&s' }
           ]
         }
       };
@@ -198,6 +230,15 @@
           <p id="cost" class="bold" style="display: none;">Cost: ${attraction.cost}</p>
           <div class="images-container">
             ${attraction.images.map(img => `<img src="${img}" alt="Image of ${attraction.name}">`).join('')}
+          </div>
+          <div class="food-container">
+            <h3>Food</h3>
+            ${attraction.food.map(food => `
+              <div>
+                <p>${food.name}</p>
+                <img src="${food.image}" alt="${food.name}">
+              </div>
+            `).join('')}
           </div>
         `;
       }
