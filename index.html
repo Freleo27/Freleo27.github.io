@@ -234,18 +234,16 @@
           <p>Details: <strong>${attraction.details}</strong></p>
           <button class="cost-button rotate" onclick="revealCost(this)">💲</button>
           <p id="cost" class="bold" style="display: none;">Cost: ${attraction.cost}</p>
-          <div class="images-container">
-            ${attraction.images.map(img => `<img src="${img}" alt="Image of ${attraction.name}">`).join('')}
-          </div>
           <div class="food-container">
-            <h3>Food</h3>
-            ${attraction.food.map(food => `
-              <div>
-                <p>${food.name}</p>
-                <img src="${food.image}" alt="${food.name}">
-              </div>
-            `).join('')}
-          </div>
+  <h3>Food</h3>
+  ${attraction.food ? attraction.food.map(food => `
+    <div>
+      <p>${food.name}</p>
+      <img src="${food.image}" alt="${food.name}">
+    </div>
+  `).join('') : ''}
+</div>
+
         `;
       }
       closeDropdowns();
